@@ -21,9 +21,9 @@ jobs:
         run: npm install --legacy-peer-deps
 
       - name: Build Angular project
-        run: npm run build -- --base-href="/your-repository-name/"
+        run: npm run build -- --base-href="/ng-weather/"
 
       - name: Deploy to GitHub Pages
-        run: npx angular-cli-ghpages --dir=dist/ng-weather
+        run: npx angular-cli-ghpages --dir=dist --no-silent
         env:
           CI: true
