@@ -1,31 +1,29 @@
-name: Build and Deploy Script
+name: Deploy Angular to GitHub Pages
+
 on:
   push:
     branches:
       - master
-
 jobs:
   build:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout Repository
+      - name: Checkout repository
         uses: actions/checkout@v2
 
-      - name: Adding Node.js
-        uses: actions/setup-node@v2
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
         with:
-          node-version: 18.x
+          node-version: '18'
 
-      - name: Install Dependencies
-        run: npm install --legacy-peer-deps
+      - name: Install dependencies
+        run: npm install
 
-      - name: Build Angular App
-        run: npm run build --prod
+      - name: Build Angular project
+        run: npm run build -- --base-href="/your-repository-name/"
 
-      - name: Deploy to gh pages
-        run: |
-          npx angular-cli-ghpages --dir=dist
+      - name: Deploy to GitHub Pages
+        run: npx angular-cli-ghpages --dir=dist/project-name
         env:
           CI: true
-          GH_TOKEN: ${{ secrets.GH_TOKEN }}
