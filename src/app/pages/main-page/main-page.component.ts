@@ -1,11 +1,12 @@
 import { Component, inject } from '@angular/core';
 import { CurrentConditionsComponent, ZipcodeEntryComponent } from 'app/components';
+import { TabsComponent } from 'app/components/tabs.component';
 import { LocationService, WeatherService } from 'app/services';
 
 @Component({
   selector: 'app-main-page',
   templateUrl: './main-page.component.html',
-  imports: [CurrentConditionsComponent, ZipcodeEntryComponent],
+  imports: [CurrentConditionsComponent, ZipcodeEntryComponent, TabsComponent],
   standalone: true,
 })
 export class MainPageComponent {

@@ -4,4 +4,11 @@
     [conditions]="currentConditions()"
     (removeCondition)="onRemoveCondition($event)"
   />
+
+  <tabs-component>
+    <app-current-conditions
+      [conditions]="currentConditions()"
+      (removeCondition)="onRemoveCondition($event)"
+    />
+  </tabs-component>
 </div>
