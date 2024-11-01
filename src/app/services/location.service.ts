@@ -29,8 +29,9 @@ export class LocationService {
     let index = this.$locations().indexOf(zipcode);
     if (index !== -1) {
       this.$locations.update(codes => {
-        codes.splice(index, 1);
-        return codes;
+        const copy = [...codes];
+        copy.splice(index, 1);
+        return copy;
       });
       localStorage.setItem(LOCATIONS, JSON.stringify(this.$locations()));
     }

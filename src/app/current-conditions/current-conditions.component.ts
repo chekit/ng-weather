@@ -1,4 +1,4 @@
-import { Component, effect, inject, input } from '@angular/core';
+import { Component, inject, input } from '@angular/core';
 import { Router } from '@angular/router';
 import { ConditionsAndZip } from '../conditions-and-zip.type';
 import { LocationService, WeatherService } from '../services';
@@ -16,13 +16,14 @@ export class CurrentConditionsComponent {
 
   conditions = input<ConditionsAndZip[]>([]);
 
-  constructor() {
-    effect(() => {
-      console.log(this.conditions());
-    });
-  }
-
   showForecast(zipcode: string) {
     this.router.navigate(['/forecast', zipcode]);
+  }
+
+  onRemoveCondition(event: Event, zip: string): void {
+    event.stopPropagation();
+
+    this.locationService.removeLocation(zip);
+    this.weatherService.removeCurrentConditions(zip);
   }
 }
