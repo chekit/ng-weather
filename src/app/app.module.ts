@@ -8,20 +8,10 @@ import { ServiceWorkerModule } from '@angular/service-worker';
 import { environment } from '../environments/environment';
 import { AppComponent } from './app.component';
 import { routing } from './app.routing';
-import { CurrentConditionsComponent } from './current-conditions/current-conditions.component';
-import { ForecastsListComponent } from './forecasts-list/forecasts-list.component';
-import { MainPageComponent } from './main-page/main-page.component';
-import { LocationService, WeatherService } from './services';
-import { ZipcodeEntryComponent } from './zipcode-entry/zipcode-entry.component';
+import { ForecastsListComponent, MainPageComponent } from './pages';
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    ZipcodeEntryComponent,
-    ForecastsListComponent,
-    CurrentConditionsComponent,
-    MainPageComponent,
-  ],
+  declarations: [AppComponent],
   imports: [
     BrowserModule,
     FormsModule,
@@ -29,8 +19,9 @@ import { ZipcodeEntryComponent } from './zipcode-entry/zipcode-entry.component';
     RouterModule,
     routing,
     ServiceWorkerModule.register('/ngsw-worker.js', { enabled: environment.production }),
+    MainPageComponent,
+    ForecastsListComponent,
   ],
-  providers: [LocationService, WeatherService],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

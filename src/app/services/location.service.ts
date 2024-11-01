@@ -2,7 +2,9 @@ import { Injectable, signal } from '@angular/core';
 
 export const LOCATIONS: string = 'locations';
 
-@Injectable()
+@Injectable({
+  providedIn: 'root',
+})
 export class LocationService {
   private $locations = signal<string[]>([]);
 

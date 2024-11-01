@@ -2,11 +2,13 @@ import { inject, Injectable, Signal, signal } from '@angular/core';
 import { Observable } from 'rxjs';
 
 import { HttpClient } from '@angular/common/http';
+import { CurrentConditions } from '../components/current-conditions/current-conditions.type';
 import { ConditionsAndZip } from '../conditions-and-zip.type';
-import { CurrentConditions } from '../current-conditions/current-conditions.type';
-import { Forecast } from '../forecasts-list/forecast.type';
+import { Forecast } from '../pages/forecasts-list/forecast.type';
 
-@Injectable()
+@Injectable({
+  providedIn: 'root',
+})
 export class WeatherService {
   static URL = 'https://api.openweathermap.org/data/2.5';
   static APPID = '5a4b2d457ecbef9eb2a71e480b947604';
