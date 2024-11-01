@@ -19,8 +19,6 @@ export class LocationService {
   }
 
   addLocation(zipcode: string) {
-    if (this.$locations().includes(zipcode)) return;
-
     this.$locations.update(codes => [...codes, zipcode]);
     localStorage.setItem(LOCATIONS, JSON.stringify(this.$locations()));
   }

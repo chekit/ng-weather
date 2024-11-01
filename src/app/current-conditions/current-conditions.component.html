@@ -18,11 +18,11 @@
     <div>
       <span
         class="close"
-        (click)="onRemoveCondition($event, location.zip)"
+        (click)="removeCondition.emit(location.zip)"
         >&times;</span
       >
       <img
-        [src]="weatherService.getWeatherIcon(location.data.weather[0].id)"
+        [src]="location.iconUrl"
         alt="Condition icon"
       />
     </div>

@@ -1,8 +1,16 @@
 <div class="well">
   <h2>Enter a zipcode (US only):</h2>
-  <input type="text" #zipcode placeholder="Zipcode" class="form-control" />
+  <input
+    type="text"
+    #zipcode
+    placeholder="Zipcode"
+    class="form-control"
+  />
   <br />
-  <button class="btn btn-primary" (click)="addLocation(zipcode.value)">
+  <button
+    class="btn btn-primary"
+    (click)="addLocation.emit(zipcode.value)"
+  >
     Add location
   </button>
 </div>

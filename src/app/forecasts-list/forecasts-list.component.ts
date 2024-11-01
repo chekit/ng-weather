@@ -1,5 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { Observable } from 'rxjs';
+import { filter, map, switchMap } from 'rxjs/operators';
 import { WeatherService } from '../services';
 import { Forecast } from './forecast.type';
 
@@ -9,16 +11,12 @@ import { Forecast } from './forecast.type';
   styleUrls: ['./forecasts-list.component.css'],
 })
 export class ForecastsListComponent {
-  zipcode: string;
-  forecast: Forecast;
+  protected weatherService = inject(WeatherService);
+  private route = inject(ActivatedRoute);
 
-  constructor(
-    protected weatherService: WeatherService,
-    route: ActivatedRoute
-  ) {
-    route.params.subscribe(params => {
-      this.zipcode = params['zipcode'];
-      weatherService.getForecast(this.zipcode).subscribe(data => (this.forecast = data));
-    });
-  }
+  forecast$: Observable<Forecast> = this.route.params.pipe(
+    map(params => params['zipcode']),
+    filter(Boolean),
+    switchMap((zipcode: string) => this.weatherService.getForecast(zipcode))
+  );
 }

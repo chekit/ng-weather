@@ -1,4 +1,7 @@
 <div class="container-fluid">
-  <app-zipcode-entry> </app-zipcode-entry>
-  <app-current-conditions [conditions]="currentConditions()"></app-current-conditions>
+  <app-zipcode-entry (addLocation)="onAddLocation($event)" />
+  <app-current-conditions
+    [conditions]="currentConditions()"
+    (removeCondition)="onRemoveCondition($event)"
+  />
 </div>

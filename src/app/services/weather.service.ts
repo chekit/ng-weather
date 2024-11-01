@@ -1,4 +1,4 @@
-import { Injectable, Signal, signal } from '@angular/core';
+import { inject, Injectable, Signal, signal } from '@angular/core';
 import { Observable } from 'rxjs';
 
 import { HttpClient } from '@angular/common/http';
@@ -15,15 +15,20 @@ export class WeatherService {
 
   private currentConditions = signal<ConditionsAndZip[]>([]);
 
-  constructor(private http: HttpClient) {}
+  private http = inject(HttpClient);
 
-  addCurrentConditions(zipcode: string): void {
+  addCurrentConditions(zip: string): void {
     // Here we make a request to get the current conditions data from the API. Note the use of backticks and an expression to insert the zipcode
     this.http
       .get<CurrentConditions>(
-        `${WeatherService.URL}/weather?zip=${zipcode},us&units=imperial&APPID=${WeatherService.APPID}`
+        `${WeatherService.URL}/weather?zip=${zip},us&units=imperial&APPID=${WeatherService.APPID}`
       )
-      .subscribe(data => this.currentConditions.update(conditions => [...conditions, { zip: zipcode, data }]));
+      .subscribe(data =>
+        this.currentConditions.update(conditions => [
+          ...conditions,
+          { zip, data, iconUrl: this.getWeatherIcon(data.weather[0].id) },
+        ])
+      );
   }
 
   removeCurrentConditions(zipcode: string) {
@@ -46,7 +51,7 @@ export class WeatherService {
     );
   }
 
-  getWeatherIcon(id): string {
+  private getWeatherIcon(id: number): string {
     let imageName = 'art_clear.png';
 
     if (id >= 200 && id <= 232) {
