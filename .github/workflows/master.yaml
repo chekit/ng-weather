@@ -32,3 +32,4 @@ jobs:
         run: npx angular-cli-ghpages --dir=dist --no-silent
         env:
           CI: true
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
