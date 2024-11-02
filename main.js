@@ -126,6 +126,70 @@ const routing = _angular_router__WEBPACK_IMPORTED_MODULE_2__.RouterModule.forRoo
 
 /***/ }),
 
+/***/ 7129:
+/*!***********************************************************************************************************!*\
+  !*** ./src/app/components/current-conditions/components/current-condition/current-condition.component.ts ***!
+  \***********************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   CurrentConditionComponent: () => (/* binding */ CurrentConditionComponent)
+/* harmony export */ });
+/* harmony import */ var _current_condition_component_html_ngResource__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./current-condition.component.html?ngResource */ 9283);
+/* harmony import */ var _current_condition_component_css_ngResource__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./current-condition.component.css?ngResource */ 2610);
+/* harmony import */ var _current_condition_component_css_ngResource__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_current_condition_component_css_ngResource__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _angular_common__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/common */ 316);
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/core */ 7580);
+/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @angular/router */ 5072);
+var __decorate = undefined && undefined.__decorate || function (decorators, target, key, desc) {
+  var c = arguments.length,
+    r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc,
+    d;
+  if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+  return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+
+
+
+
+
+
+let CurrentConditionComponent = class CurrentConditionComponent {
+  constructor() {
+    this.location = (0,_angular_core__WEBPACK_IMPORTED_MODULE_2__.input)();
+    this.remove = (0,_angular_core__WEBPACK_IMPORTED_MODULE_2__.output)();
+  }
+  static {
+    this.propDecorators = {
+      location: [{
+        type: _angular_core__WEBPACK_IMPORTED_MODULE_2__.Input,
+        args: [{
+          isSignal: true,
+          alias: "location",
+          required: false,
+          transform: undefined
+        }]
+      }],
+      remove: [{
+        type: _angular_core__WEBPACK_IMPORTED_MODULE_2__.Output,
+        args: ["remove"]
+      }]
+    };
+  }
+};
+CurrentConditionComponent = __decorate([(0,_angular_core__WEBPACK_IMPORTED_MODULE_2__.Component)({
+  selector: 'current-condition',
+  template: _current_condition_component_html_ngResource__WEBPACK_IMPORTED_MODULE_0__,
+  imports: [_angular_common__WEBPACK_IMPORTED_MODULE_3__.CommonModule, _angular_router__WEBPACK_IMPORTED_MODULE_4__.RouterLink],
+  standalone: true,
+  styles: [(_current_condition_component_css_ngResource__WEBPACK_IMPORTED_MODULE_1___default())]
+})], CurrentConditionComponent);
+
+
+/***/ }),
+
 /***/ 4371:
 /*!*******************************************************************************!*\
   !*** ./src/app/components/current-conditions/current-conditions.component.ts ***!
@@ -141,8 +205,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _current_conditions_component_css_ngResource__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./current-conditions.component.css?ngResource */ 6532);
 /* harmony import */ var _current_conditions_component_css_ngResource__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_current_conditions_component_css_ngResource__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var _angular_common__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @angular/common */ 316);
-/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/core */ 7580);
-/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/router */ 5072);
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/core */ 7580);
+/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @angular/router */ 5072);
+/* harmony import */ var _components_current_condition_current_condition_component__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./components/current-condition/current-condition.component */ 7129);
 var __decorate = undefined && undefined.__decorate || function (decorators, target, key, desc) {
   var c = arguments.length,
     r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc,
@@ -156,19 +221,16 @@ var __decorate = undefined && undefined.__decorate || function (decorators, targ
 
 
 
+
 let CurrentConditionsComponent = class CurrentConditionsComponent {
   constructor() {
-    this.router = (0,_angular_core__WEBPACK_IMPORTED_MODULE_2__.inject)(_angular_router__WEBPACK_IMPORTED_MODULE_3__.Router);
-    this.conditions = (0,_angular_core__WEBPACK_IMPORTED_MODULE_2__.input)([]);
-    this.removeCondition = (0,_angular_core__WEBPACK_IMPORTED_MODULE_2__.output)();
-  }
-  showForecast(zipcode) {
-    this.router.navigate(['/forecast', zipcode]);
+    this.conditions = (0,_angular_core__WEBPACK_IMPORTED_MODULE_3__.input)([]);
+    this.removeCondition = (0,_angular_core__WEBPACK_IMPORTED_MODULE_3__.output)();
   }
   static {
     this.propDecorators = {
       conditions: [{
-        type: _angular_core__WEBPACK_IMPORTED_MODULE_2__.Input,
+        type: _angular_core__WEBPACK_IMPORTED_MODULE_3__.Input,
         args: [{
           isSignal: true,
           alias: "conditions",
@@ -177,17 +239,17 @@ let CurrentConditionsComponent = class CurrentConditionsComponent {
         }]
       }],
       removeCondition: [{
-        type: _angular_core__WEBPACK_IMPORTED_MODULE_2__.Output,
+        type: _angular_core__WEBPACK_IMPORTED_MODULE_3__.Output,
         args: ["removeCondition"]
       }]
     };
   }
 };
-CurrentConditionsComponent = __decorate([(0,_angular_core__WEBPACK_IMPORTED_MODULE_2__.Component)({
+CurrentConditionsComponent = __decorate([(0,_angular_core__WEBPACK_IMPORTED_MODULE_3__.Component)({
   selector: 'app-current-conditions',
   template: _current_conditions_component_html_ngResource__WEBPACK_IMPORTED_MODULE_0__,
-  changeDetection: _angular_core__WEBPACK_IMPORTED_MODULE_2__.ChangeDetectionStrategy.OnPush,
-  imports: [_angular_common__WEBPACK_IMPORTED_MODULE_4__.CommonModule, _angular_router__WEBPACK_IMPORTED_MODULE_3__.RouterLink],
+  changeDetection: _angular_core__WEBPACK_IMPORTED_MODULE_3__.ChangeDetectionStrategy.OnPush,
+  imports: [_angular_common__WEBPACK_IMPORTED_MODULE_4__.CommonModule, _angular_router__WEBPACK_IMPORTED_MODULE_5__.RouterLink, _components_current_condition_current_condition_component__WEBPACK_IMPORTED_MODULE_2__.CurrentConditionComponent],
   standalone: true,
   styles: [(_current_conditions_component_css_ngResource__WEBPACK_IMPORTED_MODULE_1___default())]
 })], CurrentConditionsComponent);
@@ -214,10 +276,10 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ 990:
-/*!**********************************************!*\
-  !*** ./src/app/components/tabs.component.ts ***!
-  \**********************************************/
+/***/ 2075:
+/*!***************************************************!*\
+  !*** ./src/app/components/tabs/tabs.component.ts ***!
+  \***************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -225,10 +287,11 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   TabsComponent: () => (/* binding */ TabsComponent)
 /* harmony export */ });
-/* harmony import */ var _home_runner_work_ng_weather_ng_weather_src_app_components_tabs_component_ts_css_ngResource_home_runner_work_ng_weather_ng_weather_node_modules_ngtools_webpack_src_loaders_inline_resource_js_data_CiAgICAudGFicy1zd2l0Y2ggewogICAgICBkaXNwbGF5OiBmbGV4OwogICAgICBnYXA6IDVweDsKICAgICAgcGFkZGluZzogMDsKICAgICAgbWFyZ2luOiAwOwogICAgICBsaXN0LXN0eWxlLXR5cGU6IG5vbmU7CiAgICB9CgogICAgLnRhYnMtc3dpdGNoX19pdGVtIHsKICAgICAgcGFkZGluZzogNXB4IDEwcHg7CiAgICAgIGJvcmRlcjogMXB4IHNvbGlkICM1NzU5NWQ7CiAgICAgIGJhY2tncm91bmQtY29sb3I6ICM2MTdhYTA7CiAgICAgIGNvbG9yOiB3aGl0ZTsKICAgIH0KCiAgICAudGFicy1zd2l0Y2hfX2Nsb3NlIHsKICAgICAgcGFkZGluZzogMDsKICAgICAgbWFyZ2luOiAwIDAgMCAxMHB4OwogICAgICBib3JkZXI6IG5vbmU7CiAgICAgIGJhY2tncm91bmQtY29sb3I6IHRyYW5zcGFyZW50OwogICAgfQoKICAgIC50YWJzLXByZXZpZXcgewogICAgICBwYWRkaW5nOiAyMHB4IDE1cHg7CiAgICAgIGJvcmRlcjogMXB4IHNvbGlkICM1NzU5NWQ7CiAgICB9CiAg_home_runner_work_ng_weather_ng_weather_src_app_components_tabs_component_ts__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./src/app/components/tabs.component.ts.css?ngResource!=!./node_modules/@ngtools/webpack/src/loaders/inline-resource.js?data=CiAgICAudGFicy1zd2l0Y2ggewogICAgICBkaXNwbGF5OiBmbGV4OwogICAgICBnYXA6IDVweDsKICAgICAgcGFkZGluZzogMDsKICAgICAgbWFyZ2luOiAwOwogICAgICBsaXN0LXN0eWxlLXR5cGU6IG5vbmU7CiAgICB9CgogICAgLnRhYnMtc3dpdGNoX19pdGVtIHsKICAgICAgcGFkZGluZzogNXB4IDEwcHg7CiAgICAgIGJvcmRlcjogMXB4IHNvbGlkICM1NzU5NWQ7CiAgICAgIGJhY2tncm91bmQtY29sb3I6ICM2MTdhYTA7CiAgICAgIGNvbG9yOiB3aGl0ZTsKICAgIH0KCiAgICAudGFicy1zd2l0Y2hfX2Nsb3NlIHsKICAgICAgcGFkZGluZzogMDsKICAgICAgbWFyZ2luOiAwIDAgMCAxMHB4OwogICAgICBib3JkZXI6IG5vbmU7CiAgICAgIGJhY2tncm91bmQtY29sb3I6IHRyYW5zcGFyZW50OwogICAgfQoKICAgIC50YWJzLXByZXZpZXcgewogICAgICBwYWRkaW5nOiAyMHB4IDE1cHg7CiAgICAgIGJvcmRlcjogMXB4IHNvbGlkICM1NzU5NWQ7CiAgICB9CiAg!./src/app/components/tabs.component.ts */ 7511);
-/* harmony import */ var _home_runner_work_ng_weather_ng_weather_src_app_components_tabs_component_ts_css_ngResource_home_runner_work_ng_weather_ng_weather_node_modules_ngtools_webpack_src_loaders_inline_resource_js_data_CiAgICAudGFicy1zd2l0Y2ggewogICAgICBkaXNwbGF5OiBmbGV4OwogICAgICBnYXA6IDVweDsKICAgICAgcGFkZGluZzogMDsKICAgICAgbWFyZ2luOiAwOwogICAgICBsaXN0LXN0eWxlLXR5cGU6IG5vbmU7CiAgICB9CgogICAgLnRhYnMtc3dpdGNoX19pdGVtIHsKICAgICAgcGFkZGluZzogNXB4IDEwcHg7CiAgICAgIGJvcmRlcjogMXB4IHNvbGlkICM1NzU5NWQ7CiAgICAgIGJhY2tncm91bmQtY29sb3I6ICM2MTdhYTA7CiAgICAgIGNvbG9yOiB3aGl0ZTsKICAgIH0KCiAgICAudGFicy1zd2l0Y2hfX2Nsb3NlIHsKICAgICAgcGFkZGluZzogMDsKICAgICAgbWFyZ2luOiAwIDAgMCAxMHB4OwogICAgICBib3JkZXI6IG5vbmU7CiAgICAgIGJhY2tncm91bmQtY29sb3I6IHRyYW5zcGFyZW50OwogICAgfQoKICAgIC50YWJzLXByZXZpZXcgewogICAgICBwYWRkaW5nOiAyMHB4IDE1cHg7CiAgICAgIGJvcmRlcjogMXB4IHNvbGlkICM1NzU5NWQ7CiAgICB9CiAg_home_runner_work_ng_weather_ng_weather_src_app_components_tabs_component_ts__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_home_runner_work_ng_weather_ng_weather_src_app_components_tabs_component_ts_css_ngResource_home_runner_work_ng_weather_ng_weather_node_modules_ngtools_webpack_src_loaders_inline_resource_js_data_CiAgICAudGFicy1zd2l0Y2ggewogICAgICBkaXNwbGF5OiBmbGV4OwogICAgICBnYXA6IDVweDsKICAgICAgcGFkZGluZzogMDsKICAgICAgbWFyZ2luOiAwOwogICAgICBsaXN0LXN0eWxlLXR5cGU6IG5vbmU7CiAgICB9CgogICAgLnRhYnMtc3dpdGNoX19pdGVtIHsKICAgICAgcGFkZGluZzogNXB4IDEwcHg7CiAgICAgIGJvcmRlcjogMXB4IHNvbGlkICM1NzU5NWQ7CiAgICAgIGJhY2tncm91bmQtY29sb3I6ICM2MTdhYTA7CiAgICAgIGNvbG9yOiB3aGl0ZTsKICAgIH0KCiAgICAudGFicy1zd2l0Y2hfX2Nsb3NlIHsKICAgICAgcGFkZGluZzogMDsKICAgICAgbWFyZ2luOiAwIDAgMCAxMHB4OwogICAgICBib3JkZXI6IG5vbmU7CiAgICAgIGJhY2tncm91bmQtY29sb3I6IHRyYW5zcGFyZW50OwogICAgfQoKICAgIC50YWJzLXByZXZpZXcgewogICAgICBwYWRkaW5nOiAyMHB4IDE1cHg7CiAgICAgIGJvcmRlcjogMXB4IHNvbGlkICM1NzU5NWQ7CiAgICB9CiAg_home_runner_work_ng_weather_ng_weather_src_app_components_tabs_component_ts__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _angular_common__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/common */ 316);
-/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ 7580);
+/* harmony import */ var _tabs_component_html_ngResource__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./tabs.component.html?ngResource */ 5965);
+/* harmony import */ var _tabs_component_css_ngResource__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./tabs.component.css?ngResource */ 4436);
+/* harmony import */ var _tabs_component_css_ngResource__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_tabs_component_css_ngResource__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _angular_common__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/common */ 316);
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/core */ 7580);
 var __decorate = undefined && undefined.__decorate || function (decorators, target, key, desc) {
   var c = arguments.length,
     r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc,
@@ -239,21 +302,50 @@ var __decorate = undefined && undefined.__decorate || function (decorators, targ
 
 
 
-let TabsComponent = class TabsComponent {};
-TabsComponent = __decorate([(0,_angular_core__WEBPACK_IMPORTED_MODULE_1__.Component)({
+
+
+let TabsComponent = class TabsComponent {
+  constructor() {
+    this.data = (0,_angular_core__WEBPACK_IMPORTED_MODULE_2__.input)([]);
+    this.tabContentTmpl = _angular_core__WEBPACK_IMPORTED_MODULE_2__.contentChild.required('tabContent', {
+      read: _angular_core__WEBPACK_IMPORTED_MODULE_2__.TemplateRef
+    });
+    (0,_angular_core__WEBPACK_IMPORTED_MODULE_2__.effect)(() => {
+      console.log(this.tabContentTmpl);
+    });
+  }
+  static {
+    this.ctorParameters = () => [];
+  }
+  static {
+    this.propDecorators = {
+      data: [{
+        type: _angular_core__WEBPACK_IMPORTED_MODULE_2__.Input,
+        args: [{
+          isSignal: true,
+          alias: "data",
+          required: false,
+          transform: undefined
+        }]
+      }],
+      tabContentTmpl: [{
+        type: _angular_core__WEBPACK_IMPORTED_MODULE_2__.ContentChild,
+        args: ['tabContent', {
+          ...{
+            read: _angular_core__WEBPACK_IMPORTED_MODULE_2__.TemplateRef
+          },
+          isSignal: true
+        }]
+      }]
+    };
+  }
+};
+TabsComponent = __decorate([(0,_angular_core__WEBPACK_IMPORTED_MODULE_2__.Component)({
   selector: 'tabs-component',
-  template: `
-    <div class="tabs">
-      <ul class="tabs-switch">
-        <li class="tabs-switch__item">tab (1) <button class="tabs-switch__close">X</button></li>
-        <li class="tabs-switch__item">tab (2) <button class="tabs-switch__close">X</button></li>
-      </ul>
-      <div class="tabs-preview"><ng-content></ng-content></div>
-    </div>
-  `,
-  imports: [_angular_common__WEBPACK_IMPORTED_MODULE_2__.CommonModule],
+  template: _tabs_component_html_ngResource__WEBPACK_IMPORTED_MODULE_0__,
+  imports: [_angular_common__WEBPACK_IMPORTED_MODULE_3__.CommonModule],
   standalone: true,
-  styles: [(_home_runner_work_ng_weather_ng_weather_src_app_components_tabs_component_ts_css_ngResource_home_runner_work_ng_weather_ng_weather_node_modules_ngtools_webpack_src_loaders_inline_resource_js_data_CiAgICAudGFicy1zd2l0Y2ggewogICAgICBkaXNwbGF5OiBmbGV4OwogICAgICBnYXA6IDVweDsKICAgICAgcGFkZGluZzogMDsKICAgICAgbWFyZ2luOiAwOwogICAgICBsaXN0LXN0eWxlLXR5cGU6IG5vbmU7CiAgICB9CgogICAgLnRhYnMtc3dpdGNoX19pdGVtIHsKICAgICAgcGFkZGluZzogNXB4IDEwcHg7CiAgICAgIGJvcmRlcjogMXB4IHNvbGlkICM1NzU5NWQ7CiAgICAgIGJhY2tncm91bmQtY29sb3I6ICM2MTdhYTA7CiAgICAgIGNvbG9yOiB3aGl0ZTsKICAgIH0KCiAgICAudGFicy1zd2l0Y2hfX2Nsb3NlIHsKICAgICAgcGFkZGluZzogMDsKICAgICAgbWFyZ2luOiAwIDAgMCAxMHB4OwogICAgICBib3JkZXI6IG5vbmU7CiAgICAgIGJhY2tncm91bmQtY29sb3I6IHRyYW5zcGFyZW50OwogICAgfQoKICAgIC50YWJzLXByZXZpZXcgewogICAgICBwYWRkaW5nOiAyMHB4IDE1cHg7CiAgICAgIGJvcmRlcjogMXB4IHNvbGlkICM1NzU5NWQ7CiAgICB9CiAg_home_runner_work_ng_weather_ng_weather_src_app_components_tabs_component_ts__WEBPACK_IMPORTED_MODULE_0___default())]
+  styles: [(_tabs_component_css_ngResource__WEBPACK_IMPORTED_MODULE_1___default())]
 })], TabsComponent);
 
 
@@ -388,10 +480,11 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   MainPageComponent: () => (/* binding */ MainPageComponent)
 /* harmony export */ });
 /* harmony import */ var _main_page_component_html_ngResource__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./main-page.component.html?ngResource */ 5941);
-/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @angular/core */ 7580);
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @angular/core */ 7580);
 /* harmony import */ var app_components__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! app/components */ 7455);
-/* harmony import */ var app_components_tabs_component__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! app/components/tabs.component */ 990);
-/* harmony import */ var app_services__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! app/services */ 8379);
+/* harmony import */ var app_components_current_conditions_components_current_condition_current_condition_component__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! app/components/current-conditions/components/current-condition/current-condition.component */ 7129);
+/* harmony import */ var app_components_tabs_tabs_component__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! app/components/tabs/tabs.component */ 2075);
+/* harmony import */ var app_services__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! app/services */ 8379);
 var __decorate = undefined && undefined.__decorate || function (decorators, target, key, desc) {
   var c = arguments.length,
     r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc,
@@ -404,10 +497,11 @@ var __decorate = undefined && undefined.__decorate || function (decorators, targ
 
 
 
+
 let MainPageComponent = class MainPageComponent {
   constructor() {
-    this.locationService = (0,_angular_core__WEBPACK_IMPORTED_MODULE_4__.inject)(app_services__WEBPACK_IMPORTED_MODULE_3__.LocationService);
-    this.weatherService = (0,_angular_core__WEBPACK_IMPORTED_MODULE_4__.inject)(app_services__WEBPACK_IMPORTED_MODULE_3__.WeatherService);
+    this.locationService = (0,_angular_core__WEBPACK_IMPORTED_MODULE_5__.inject)(app_services__WEBPACK_IMPORTED_MODULE_4__.LocationService);
+    this.weatherService = (0,_angular_core__WEBPACK_IMPORTED_MODULE_5__.inject)(app_services__WEBPACK_IMPORTED_MODULE_4__.WeatherService);
     this.currentConditions = this.weatherService.getCurrentConditions();
   }
   onAddLocation(zipcode) {
@@ -421,10 +515,10 @@ let MainPageComponent = class MainPageComponent {
     this.weatherService.removeCurrentConditions(zipcode);
   }
 };
-MainPageComponent = __decorate([(0,_angular_core__WEBPACK_IMPORTED_MODULE_4__.Component)({
+MainPageComponent = __decorate([(0,_angular_core__WEBPACK_IMPORTED_MODULE_5__.Component)({
   selector: 'app-main-page',
   template: _main_page_component_html_ngResource__WEBPACK_IMPORTED_MODULE_0__,
-  imports: [app_components__WEBPACK_IMPORTED_MODULE_1__.CurrentConditionsComponent, app_components__WEBPACK_IMPORTED_MODULE_1__.ZipcodeEntryComponent, app_components_tabs_component__WEBPACK_IMPORTED_MODULE_2__.TabsComponent],
+  imports: [app_components__WEBPACK_IMPORTED_MODULE_1__.ZipcodeEntryComponent, app_components_tabs_tabs_component__WEBPACK_IMPORTED_MODULE_3__.TabsComponent, app_components_current_conditions_components_current_condition_current_condition_component__WEBPACK_IMPORTED_MODULE_2__.CurrentConditionComponent],
   standalone: true
 })], MainPageComponent);
 
@@ -647,51 +741,6 @@ if (_environments_environment__WEBPACK_IMPORTED_MODULE_1__.environment.productio
 
 /***/ }),
 
-/***/ 7511:
-/*!***********************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
-  !*** ./src/app/components/tabs.component.ts.css?ngResource!=!./node_modules/@ngtools/webpack/src/loaders/inline-resource.js?data=CiAgICAudGFicy1zd2l0Y2ggewogICAgICBkaXNwbGF5OiBmbGV4OwogICAgICBnYXA6IDVweDsKICAgICAgcGFkZGluZzogMDsKICAgICAgbWFyZ2luOiAwOwogICAgICBsaXN0LXN0eWxlLXR5cGU6IG5vbmU7CiAgICB9CgogICAgLnRhYnMtc3dpdGNoX19pdGVtIHsKICAgICAgcGFkZGluZzogNXB4IDEwcHg7CiAgICAgIGJvcmRlcjogMXB4IHNvbGlkICM1NzU5NWQ7CiAgICAgIGJhY2tncm91bmQtY29sb3I6ICM2MTdhYTA7CiAgICAgIGNvbG9yOiB3aGl0ZTsKICAgIH0KCiAgICAudGFicy1zd2l0Y2hfX2Nsb3NlIHsKICAgICAgcGFkZGluZzogMDsKICAgICAgbWFyZ2luOiAwIDAgMCAxMHB4OwogICAgICBib3JkZXI6IG5vbmU7CiAgICAgIGJhY2tncm91bmQtY29sb3I6IHRyYW5zcGFyZW50OwogICAgfQoKICAgIC50YWJzLXByZXZpZXcgewogICAgICBwYWRkaW5nOiAyMHB4IDE1cHg7CiAgICAgIGJvcmRlcjogMXB4IHNvbGlkICM1NzU5NWQ7CiAgICB9CiAg!./src/app/components/tabs.component.ts ***!
-  \***********************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
-/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
-
-// Imports
-var ___CSS_LOADER_API_SOURCEMAP_IMPORT___ = __webpack_require__(/*! ../../../node_modules/css-loader/dist/runtime/sourceMaps.js */ 3142);
-var ___CSS_LOADER_API_IMPORT___ = __webpack_require__(/*! ../../../node_modules/css-loader/dist/runtime/api.js */ 5950);
-var ___CSS_LOADER_EXPORT___ = ___CSS_LOADER_API_IMPORT___(___CSS_LOADER_API_SOURCEMAP_IMPORT___);
-// Module
-___CSS_LOADER_EXPORT___.push([module.id, `
-    .tabs-switch {
-      display: flex;
-      gap: 5px;
-      padding: 0;
-      margin: 0;
-      list-style-type: none;
-    }
-
-    .tabs-switch__item {
-      padding: 5px 10px;
-      border: 1px solid #57595d;
-      background-color: #617aa0;
-      color: white;
-    }
-
-    .tabs-switch__close {
-      padding: 0;
-      margin: 0 0 0 10px;
-      border: none;
-      background-color: transparent;
-    }
-
-    .tabs-preview {
-      padding: 20px 15px;
-      border: 1px solid #57595d;
-    }
-  `, "",{"version":3,"sources":["webpack://./src/app/components/tabs.component.ts"],"names":[],"mappings":";IACI;MACE,aAAa;MACb,QAAQ;MACR,UAAU;MACV,SAAS;MACT,qBAAqB;IACvB;;IAEA;MACE,iBAAiB;MACjB,yBAAyB;MACzB,yBAAyB;MACzB,YAAY;IACd;;IAEA;MACE,UAAU;MACV,kBAAkB;MAClB,YAAY;MACZ,6BAA6B;IAC/B;;IAEA;MACE,kBAAkB;MAClB,yBAAyB;IAC3B","sourcesContent":["\n    .tabs-switch {\n      display: flex;\n      gap: 5px;\n      padding: 0;\n      margin: 0;\n      list-style-type: none;\n    }\n\n    .tabs-switch__item {\n      padding: 5px 10px;\n      border: 1px solid #57595d;\n      background-color: #617aa0;\n      color: white;\n    }\n\n    .tabs-switch__close {\n      padding: 0;\n      margin: 0 0 0 10px;\n      border: none;\n      background-color: transparent;\n    }\n\n    .tabs-preview {\n      padding: 20px 15px;\n      border: 1px solid #57595d;\n    }\n  "],"sourceRoot":""}]);
-// Exports
-module.exports = ___CSS_LOADER_EXPORT___.toString();
-
-
-/***/ }),
-
 /***/ 309:
 /*!**********************************************!*\
   !*** ./src/app/app.component.css?ngResource ***!
@@ -704,6 +753,36 @@ var ___CSS_LOADER_API_IMPORT___ = __webpack_require__(/*! ../../node_modules/css
 var ___CSS_LOADER_EXPORT___ = ___CSS_LOADER_API_IMPORT___(___CSS_LOADER_API_SOURCEMAP_IMPORT___);
 // Module
 ___CSS_LOADER_EXPORT___.push([module.id, ``, "",{"version":3,"sources":[],"names":[],"mappings":"","sourceRoot":""}]);
+// Exports
+module.exports = ___CSS_LOADER_EXPORT___.toString();
+
+
+/***/ }),
+
+/***/ 2610:
+/*!***********************************************************************************************************************!*\
+  !*** ./src/app/components/current-conditions/components/current-condition/current-condition.component.css?ngResource ***!
+  \***********************************************************************************************************************/
+/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
+
+// Imports
+var ___CSS_LOADER_API_SOURCEMAP_IMPORT___ = __webpack_require__(/*! ../../../../../../node_modules/css-loader/dist/runtime/sourceMaps.js */ 3142);
+var ___CSS_LOADER_API_IMPORT___ = __webpack_require__(/*! ../../../../../../node_modules/css-loader/dist/runtime/api.js */ 5950);
+var ___CSS_LOADER_EXPORT___ = ___CSS_LOADER_API_IMPORT___(___CSS_LOADER_API_SOURCEMAP_IMPORT___);
+// Module
+___CSS_LOADER_EXPORT___.push([module.id, `:host {
+  display: block;
+}
+
+.close {
+  cursor: pointer;
+}
+
+.flex {
+  display: flex;
+  justify-content: space-between;
+}
+`, "",{"version":3,"sources":["webpack://./src/app/components/current-conditions/components/current-condition/current-condition.component.css"],"names":[],"mappings":"AAAA;EACE,cAAc;AAChB;;AAEA;EACE,eAAe;AACjB;;AAEA;EACE,aAAa;EACb,8BAA8B;AAChC","sourcesContent":[":host {\n  display: block;\n}\n\n.close {\n  cursor: pointer;\n}\n\n.flex {\n  display: flex;\n  justify-content: space-between;\n}\n"],"sourceRoot":""}]);
 // Exports
 module.exports = ___CSS_LOADER_EXPORT___.toString();
 
@@ -733,6 +812,54 @@ ___CSS_LOADER_EXPORT___.push([module.id, `:host {
   justify-content: space-between;
 }
 `, "",{"version":3,"sources":["webpack://./src/app/components/current-conditions/current-conditions.component.css"],"names":[],"mappings":"AAAA;EACE,cAAc;AAChB;;AAEA;EACE,eAAe;AACjB;AACA;EACE,aAAa;EACb,8BAA8B;AAChC","sourcesContent":[":host {\n  display: block;\n}\n\n.close {\n  cursor: pointer;\n}\n.flex {\n  display: flex;\n  justify-content: space-between;\n}\n"],"sourceRoot":""}]);
+// Exports
+module.exports = ___CSS_LOADER_EXPORT___.toString();
+
+
+/***/ }),
+
+/***/ 4436:
+/*!***************************************************************!*\
+  !*** ./src/app/components/tabs/tabs.component.css?ngResource ***!
+  \***************************************************************/
+/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
+
+// Imports
+var ___CSS_LOADER_API_SOURCEMAP_IMPORT___ = __webpack_require__(/*! ../../../../node_modules/css-loader/dist/runtime/sourceMaps.js */ 3142);
+var ___CSS_LOADER_API_IMPORT___ = __webpack_require__(/*! ../../../../node_modules/css-loader/dist/runtime/api.js */ 5950);
+var ___CSS_LOADER_EXPORT___ = ___CSS_LOADER_API_IMPORT___(___CSS_LOADER_API_SOURCEMAP_IMPORT___);
+// Module
+___CSS_LOADER_EXPORT___.push([module.id, `:host {
+  display: block;
+}
+
+.tabs-switch {
+  display: flex;
+  gap: 5px;
+  padding: 0;
+  margin: 0;
+  list-style-type: none;
+}
+
+.tabs-switch__item {
+  padding: 5px 10px;
+  border: 1px solid #57595d;
+  background-color: #617aa0;
+  color: white;
+}
+
+.tabs-switch__close {
+  padding: 0;
+  margin: 0 0 0 10px;
+  border: none;
+  background-color: transparent;
+}
+
+.tabs-preview {
+  padding: 20px 15px;
+  border: 1px solid #57595d;
+}
+`, "",{"version":3,"sources":["webpack://./src/app/components/tabs/tabs.component.css"],"names":[],"mappings":"AAAA;EACE,cAAc;AAChB;;AAEA;EACE,aAAa;EACb,QAAQ;EACR,UAAU;EACV,SAAS;EACT,qBAAqB;AACvB;;AAEA;EACE,iBAAiB;EACjB,yBAAyB;EACzB,yBAAyB;EACzB,YAAY;AACd;;AAEA;EACE,UAAU;EACV,kBAAkB;EAClB,YAAY;EACZ,6BAA6B;AAC/B;;AAEA;EACE,kBAAkB;EAClB,yBAAyB;AAC3B","sourcesContent":[":host {\n  display: block;\n}\n\n.tabs-switch {\n  display: flex;\n  gap: 5px;\n  padding: 0;\n  margin: 0;\n  list-style-type: none;\n}\n\n.tabs-switch__item {\n  padding: 5px 10px;\n  border: 1px solid #57595d;\n  background-color: #617aa0;\n  color: white;\n}\n\n.tabs-switch__close {\n  padding: 0;\n  margin: 0 0 0 10px;\n  border: none;\n  background-color: transparent;\n}\n\n.tabs-preview {\n  padding: 20px 15px;\n  border: 1px solid #57595d;\n}\n"],"sourceRoot":""}]);
 // Exports
 module.exports = ___CSS_LOADER_EXPORT___.toString();
 
@@ -775,6 +902,17 @@ module.exports = "<router-outlet></router-outlet>\n";
 
 /***/ }),
 
+/***/ 9283:
+/*!************************************************************************************************************************!*\
+  !*** ./src/app/components/current-conditions/components/current-condition/current-condition.component.html?ngResource ***!
+  \************************************************************************************************************************/
+/***/ ((module) => {
+
+"use strict";
+module.exports = "<div class=\"well flex\">\n  <div>\n    <h3>{{ location().data.name }} ({{ location().zip }})</h3>\n    <h4>Current conditions: {{ location().data.weather[0].main }}</h4>\n    <h4>Temperatures today:</h4>\n    <p>\n      Current {{ location().data.main.temp | number: '.0-0' }} - Max\n      {{ location().data.main.temp_max | number: '.0-0' }} - Min {{ location().data.main.temp_min | number: '.0-0' }}\n    </p>\n    <p>\n      <a [routerLink]=\"['/forecast', location().zip]\">Show 5-day forecast for {{ location().data.name }}</a>\n    </p>\n  </div>\n  <div>\n    <span\n      class=\"close\"\n      (click)=\"remove.emit(location().zip)\"\n      >&times;</span\n    >\n    <img\n      [src]=\"location().iconUrl\"\n      alt=\"Condition icon\"\n    />\n  </div>\n</div>\n";
+
+/***/ }),
+
 /***/ 8869:
 /*!********************************************************************************************!*\
   !*** ./src/app/components/current-conditions/current-conditions.component.html?ngResource ***!
@@ -782,7 +920,18 @@ module.exports = "<router-outlet></router-outlet>\n";
 /***/ ((module) => {
 
 "use strict";
-module.exports = "@for (location of conditions(); track location.zip) {\n  <div\n    class=\"well flex\"\n    (click)=\"showForecast(location.zip)\"\n  >\n    <div>\n      <h3>{{ location.data.name }} ({{ location.zip }})</h3>\n      <h4>Current conditions: {{ location.data.weather[0].main }}</h4>\n      <h4>Temperatures today:</h4>\n      <p>\n        Current {{ location.data.main.temp | number: '.0-0' }} - Max\n        {{ location.data.main.temp_max | number: '.0-0' }} - Min {{ location.data.main.temp_min | number: '.0-0' }}\n      </p>\n      <p>\n        <a [routerLink]=\"['/forecast', location.zip]\">Show 5-day forecast for {{ location.data.name }}</a>\n      </p>\n    </div>\n    <div>\n      <span\n        class=\"close\"\n        (click)=\"removeCondition.emit(location.zip)\"\n        >&times;</span\n      >\n      <img\n        [src]=\"location.iconUrl\"\n        alt=\"Condition icon\"\n      />\n    </div>\n  </div>\n}\n";
+module.exports = "@for (location of conditions(); track location.zip) {\n  <current-condition\n    [location]=\"location\"\n    (click)=\"showForecast(location.zip)\"\n    (remove)=\"removeCondition.emit(location.zip)\"\n  />\n}\n";
+
+/***/ }),
+
+/***/ 5965:
+/*!****************************************************************!*\
+  !*** ./src/app/components/tabs/tabs.component.html?ngResource ***!
+  \****************************************************************/
+/***/ ((module) => {
+
+"use strict";
+module.exports = "<div class=\"tabs\">\n  <ul class=\"tabs-switch\">\n    <li class=\"tabs-switch__item\">tab (1) <button class=\"tabs-switch__close\">X</button></li>\n    <li class=\"tabs-switch__item\">tab (2) <button class=\"tabs-switch__close\">X</button></li>\n  </ul>\n  <div class=\"tabs-preview\">\n    @for (item of data(); track $index) {\n      <ng-container\n        [ngTemplateOutlet]=\"tabContentTmpl()\"\n        [ngTemplateOutletContext]=\"{ $implicit: item }\"\n      ></ng-container>\n    }\n  </div>\n</div>\n";
 
 /***/ }),
 
@@ -815,7 +964,7 @@ module.exports = "<div class=\"panel panel-default\">\n  @if (forecast$ | async;
 /***/ ((module) => {
 
 "use strict";
-module.exports = "<div class=\"container-fluid\">\n  <app-zipcode-entry (addLocation)=\"onAddLocation($event)\" />\n  <app-current-conditions\n    [conditions]=\"currentConditions()\"\n    (removeCondition)=\"onRemoveCondition($event)\"\n  />\n\n  <tabs-component>\n    <app-current-conditions\n      [conditions]=\"currentConditions()\"\n      (removeCondition)=\"onRemoveCondition($event)\"\n    />\n  </tabs-component>\n</div>\n";
+module.exports = "<div class=\"container-fluid\">\n  <app-zipcode-entry (addLocation)=\"onAddLocation($event)\" />\n  <!-- <app-current-conditions\n    [conditions]=\"currentConditions()\"\n    (removeCondition)=\"onRemoveCondition($event)\"\n  /> -->\n\n  <tabs-component [data]=\"currentConditions()\">\n    <ng-template\n      #tabContent\n      let-data\n    >\n      <current-condition\n        [location]=\"data\"\n        (remove)=\"onRemoveCondition($event)\"\n        #tabData\n      />\n    </ng-template>\n  </tabs-component>\n</div>\n";
 
 /***/ })
 
