@@ -1,0 +1,30 @@
+:host {
+  display: block;
+}
+
+.tabs-switch {
+  display: flex;
+  gap: 5px;
+  padding: 0;
+  margin: 0;
+  list-style-type: none;
+}
+
+.tabs-switch__item {
+  padding: 5px 10px;
+  border: 1px solid #57595d;
+  background-color: #617aa0;
+  color: white;
+}
+
+.tabs-switch__close {
+  padding: 0;
+  margin: 0 0 0 10px;
+  border: none;
+  background-color: transparent;
+}
+
+.tabs-preview {
+  padding: 20px 15px;
+  border: 1px solid #57595d;
+}

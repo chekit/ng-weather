@@ -1,23 +1,18 @@
 import { CommonModule } from '@angular/common';
-import { ChangeDetectionStrategy, Component, inject, input, output } from '@angular/core';
-import { Router, RouterLink } from '@angular/router';
+import { ChangeDetectionStrategy, Component, input, output } from '@angular/core';
+import { RouterLink } from '@angular/router';
 import { ConditionsAndZip } from '../../conditions-and-zip.type';
+import { CurrentConditionComponent } from './components/current-condition/current-condition.component';
 
 @Component({
   selector: 'app-current-conditions',
   templateUrl: './current-conditions.component.html',
   styleUrls: ['./current-conditions.component.css'],
   changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [CommonModule, RouterLink],
+  imports: [CommonModule, RouterLink, CurrentConditionComponent],
   standalone: true,
 })
 export class CurrentConditionsComponent {
-  private router = inject(Router);
-
   conditions = input<ConditionsAndZip[]>([]);
   removeCondition = output<string>();
-
-  showForecast(zipcode: string) {
-    this.router.navigate(['/forecast', zipcode]);
-  }
 }

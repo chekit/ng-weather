@@ -1,14 +1,20 @@
 <div class="container-fluid">
   <app-zipcode-entry (addLocation)="onAddLocation($event)" />
-  <app-current-conditions
+  <!-- <app-current-conditions
     [conditions]="currentConditions()"
     (removeCondition)="onRemoveCondition($event)"
-  />
+  /> -->
 
-  <tabs-component>
-    <app-current-conditions
-      [conditions]="currentConditions()"
-      (removeCondition)="onRemoveCondition($event)"
-    />
+  <tabs-component [data]="currentConditions()">
+    <ng-template
+      #tabContent
+      let-data
+    >
+      <current-condition
+        [location]="data"
+        (remove)="onRemoveCondition($event)"
+        #tabData
+      />
+    </ng-template>
   </tabs-component>
 </div>
