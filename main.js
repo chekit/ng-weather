@@ -720,9 +720,9 @@ let CurrentConditionsComponent = class CurrentConditionsComponent {
 CurrentConditionsComponent = __decorate([(0,_angular_core__WEBPACK_IMPORTED_MODULE_4__.Component)({
   selector: 'app-current-conditions',
   template: _current_conditions_component_html_ngResource__WEBPACK_IMPORTED_MODULE_0__,
-  changeDetection: _angular_core__WEBPACK_IMPORTED_MODULE_4__.ChangeDetectionStrategy.OnPush,
   imports: [_angular_common__WEBPACK_IMPORTED_MODULE_5__.CommonModule, _components_current_condition_current_condition_component__WEBPACK_IMPORTED_MODULE_3__.CurrentConditionComponent, _tabs_tabs_component__WEBPACK_IMPORTED_MODULE_2__.TabsComponent],
   standalone: true,
+  changeDetection: _angular_core__WEBPACK_IMPORTED_MODULE_4__.ChangeDetectionStrategy.OnPush,
   styles: [(_current_conditions_component_css_ngResource__WEBPACK_IMPORTED_MODULE_1___default())]
 })], CurrentConditionsComponent);
 
@@ -886,6 +886,7 @@ TabsComponent = __decorate([(0,_angular_core__WEBPACK_IMPORTED_MODULE_2__.Compon
   template: _tabs_component_html_ngResource__WEBPACK_IMPORTED_MODULE_0__,
   imports: [_angular_common__WEBPACK_IMPORTED_MODULE_3__.CommonModule],
   standalone: true,
+  changeDetection: _angular_core__WEBPACK_IMPORTED_MODULE_2__.ChangeDetectionStrategy.OnPush,
   styles: [(_tabs_component_css_ngResource__WEBPACK_IMPORTED_MODULE_1___default())]
 })], TabsComponent);
 
@@ -1122,12 +1123,15 @@ ___CSS_LOADER_EXPORT___.push([module.id, `:host {
 .tabs-switch {
   display: flex;
   gap: 5px;
+  overflow-x: auto;
   padding: 0;
   margin: 0;
   list-style-type: none;
 }
 
 .tabs-switch__item {
+  display: flex;
+  align-items: center;
   padding: 5px 10px;
   border: 1px solid #57595d;
   background-color: #617aa0;
@@ -1168,7 +1172,7 @@ ___CSS_LOADER_EXPORT___.push([module.id, `:host {
   text-align: center;
   color: #ccc;
 }
-`, "",{"version":3,"sources":["webpack://./src/app/shared/components/tabs/tabs.component.css"],"names":[],"mappings":"AAAA;EACE,cAAc;AAChB;;AAEA;EACE,aAAa;EACb,QAAQ;EACR,UAAU;EACV,SAAS;EACT,qBAAqB;AACvB;;AAEA;EACE,iBAAiB;EACjB,yBAAyB;EACzB,yBAAyB;EACzB,YAAY;EACZ,eAAe;EACf,8CAA8C;AAChD;;AAEA;EACE,yBAAyB;AAC3B;;AAEA;EACE,yBAAyB;AAC3B;;AAEA;EACE,UAAU;EACV,kBAAkB;EAClB,YAAY;EACZ,6BAA6B;AAC/B;;AAEA;EACE,cAAc;AAChB;;AAEA;EACE,cAAc;AAChB;;AAEA;EACE,kBAAkB;EAClB,yBAAyB;AAC3B;;AAEA;EACE,kBAAkB;EAClB,WAAW;AACb","sourcesContent":[":host {\n  display: block;\n}\n\n.tabs-switch {\n  display: flex;\n  gap: 5px;\n  padding: 0;\n  margin: 0;\n  list-style-type: none;\n}\n\n.tabs-switch__item {\n  padding: 5px 10px;\n  border: 1px solid #57595d;\n  background-color: #617aa0;\n  color: white;\n  cursor: pointer;\n  transition: background-color 0.15s ease-in-out;\n}\n\n.tabs-switch__item:hover {\n  background-color: #4a5e7c;\n}\n\n.tabs-switch__item.is-active {\n  background-color: #303d51;\n}\n\n.tabs-switch__close {\n  padding: 0;\n  margin: 0 0 0 10px;\n  border: none;\n  background-color: transparent;\n}\n\n.tabs-switch__close:hover {\n  color: #8ba5d0;\n}\n\n.tabs-switch__close:active {\n  color: #7288ac;\n}\n\n.tabs-preview {\n  padding: 20px 15px;\n  border: 1px solid #57595d;\n}\n\n.placeholder-text {\n  text-align: center;\n  color: #ccc;\n}\n"],"sourceRoot":""}]);
+`, "",{"version":3,"sources":["webpack://./src/app/shared/components/tabs/tabs.component.css"],"names":[],"mappings":"AAAA;EACE,cAAc;AAChB;;AAEA;EACE,aAAa;EACb,QAAQ;EACR,gBAAgB;EAChB,UAAU;EACV,SAAS;EACT,qBAAqB;AACvB;;AAEA;EACE,aAAa;EACb,mBAAmB;EACnB,iBAAiB;EACjB,yBAAyB;EACzB,yBAAyB;EACzB,YAAY;EACZ,eAAe;EACf,8CAA8C;AAChD;;AAEA;EACE,yBAAyB;AAC3B;;AAEA;EACE,yBAAyB;AAC3B;;AAEA;EACE,UAAU;EACV,kBAAkB;EAClB,YAAY;EACZ,6BAA6B;AAC/B;;AAEA;EACE,cAAc;AAChB;;AAEA;EACE,cAAc;AAChB;;AAEA;EACE,kBAAkB;EAClB,yBAAyB;AAC3B;;AAEA;EACE,kBAAkB;EAClB,WAAW;AACb","sourcesContent":[":host {\n  display: block;\n}\n\n.tabs-switch {\n  display: flex;\n  gap: 5px;\n  overflow-x: auto;\n  padding: 0;\n  margin: 0;\n  list-style-type: none;\n}\n\n.tabs-switch__item {\n  display: flex;\n  align-items: center;\n  padding: 5px 10px;\n  border: 1px solid #57595d;\n  background-color: #617aa0;\n  color: white;\n  cursor: pointer;\n  transition: background-color 0.15s ease-in-out;\n}\n\n.tabs-switch__item:hover {\n  background-color: #4a5e7c;\n}\n\n.tabs-switch__item.is-active {\n  background-color: #303d51;\n}\n\n.tabs-switch__close {\n  padding: 0;\n  margin: 0 0 0 10px;\n  border: none;\n  background-color: transparent;\n}\n\n.tabs-switch__close:hover {\n  color: #8ba5d0;\n}\n\n.tabs-switch__close:active {\n  color: #7288ac;\n}\n\n.tabs-preview {\n  padding: 20px 15px;\n  border: 1px solid #57595d;\n}\n\n.placeholder-text {\n  text-align: center;\n  color: #ccc;\n}\n"],"sourceRoot":""}]);
 // Exports
 module.exports = ___CSS_LOADER_EXPORT___.toString();
 
