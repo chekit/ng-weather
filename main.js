@@ -297,11 +297,12 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   CacheInterceptor: () => (/* binding */ CacheInterceptor)
 /* harmony export */ });
-/* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/common/http */ 6443);
-/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @angular/core */ 7580);
-/* harmony import */ var rxjs__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! rxjs */ 1536);
-/* harmony import */ var rxjs_operators__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! rxjs/operators */ 6000);
+/* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @angular/common/http */ 6443);
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/core */ 7580);
+/* harmony import */ var rxjs__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! rxjs */ 1536);
+/* harmony import */ var rxjs_operators__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! rxjs/operators */ 6000);
 /* harmony import */ var _browser_stotage_token__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./browser-stotage.token */ 5702);
+/* harmony import */ var _window_token__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./window.token */ 7112);
 var __decorate = undefined && undefined.__decorate || function (decorators, target, key, desc) {
   var c = arguments.length,
     r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc,
@@ -314,27 +315,29 @@ var __decorate = undefined && undefined.__decorate || function (decorators, targ
 
 
 
-const REFRESH_TIMEOUT = 10000;
+
+// Data gets cached for 2 hours
+const DEFAULT_REFRESH_TIMEOUT = 2 * 60 * 60 * 1000;
 let CacheInterceptor = class CacheInterceptor {
-  constructor(storage) {
-    this.storage = storage;
+  constructor() {
     this.cache = new Map();
+    this.storage = (0,_angular_core__WEBPACK_IMPORTED_MODULE_2__.inject)(_browser_stotage_token__WEBPACK_IMPORTED_MODULE_0__.BROWSER_STORAGE);
+    this.global = (0,_angular_core__WEBPACK_IMPORTED_MODULE_2__.inject)(_window_token__WEBPACK_IMPORTED_MODULE_1__.WINDOW);
     this.initLocalCache();
   }
   intercept(req, next) {
     if (!this.isCacheable(req)) return next.handle(req);
     const cachedResponse = this.cache.get(req.url);
     if (cachedResponse) {
-      const isReadyToUpdate = Date.now() - cachedResponse.cached > REFRESH_TIMEOUT;
-      return isReadyToUpdate ? this.sendRequest(req, next) : (0,rxjs__WEBPACK_IMPORTED_MODULE_1__.of)(new _angular_common_http__WEBPACK_IMPORTED_MODULE_2__.HttpResponse({
+      return this.isReadyToUpdate(cachedResponse.cachedAt) ? this.sendRequest(req, next) : (0,rxjs__WEBPACK_IMPORTED_MODULE_3__.of)(new _angular_common_http__WEBPACK_IMPORTED_MODULE_4__.HttpResponse({
         body: cachedResponse.resp
       }));
     }
     return this.sendRequest(req, next);
   }
   sendRequest(req, next) {
-    return next.handle(req).pipe((0,rxjs_operators__WEBPACK_IMPORTED_MODULE_3__.tap)(event => {
-      if (event instanceof _angular_common_http__WEBPACK_IMPORTED_MODULE_2__.HttpResponse) {
+    return next.handle(req).pipe((0,rxjs_operators__WEBPACK_IMPORTED_MODULE_5__.tap)(event => {
+      if (event instanceof _angular_common_http__WEBPACK_IMPORTED_MODULE_4__.HttpResponse) {
         this.updateCache(req.url, event.body);
       }
     }));
@@ -342,7 +345,7 @@ let CacheInterceptor = class CacheInterceptor {
   updateCache(key, data) {
     this.cache.set(key, {
       resp: data,
-      cached: Date.now()
+      cachedAt: Date.now()
     });
     this.storage.setItem('cache', JSON.stringify(Array.from(this.cache)));
   }
@@ -355,17 +358,16 @@ let CacheInterceptor = class CacheInterceptor {
       this.cache = new Map(JSON.parse(cached));
     }
   }
+  isReadyToUpdate(cachedAt) {
+    if (!cachedAt) return true;
+    const timeout = this.global.ref_timeout ?? DEFAULT_REFRESH_TIMEOUT;
+    return Date.now() - cachedAt > timeout;
+  }
   static {
-    this.ctorParameters = () => [{
-      type: Storage,
-      decorators: [{
-        type: _angular_core__WEBPACK_IMPORTED_MODULE_4__.Inject,
-        args: [_browser_stotage_token__WEBPACK_IMPORTED_MODULE_0__.BROWSER_STORAGE]
-      }]
-    }];
+    this.ctorParameters = () => [];
   }
 };
-CacheInterceptor = __decorate([(0,_angular_core__WEBPACK_IMPORTED_MODULE_4__.Injectable)()], CacheInterceptor);
+CacheInterceptor = __decorate([(0,_angular_core__WEBPACK_IMPORTED_MODULE_2__.Injectable)()], CacheInterceptor);
 
 
 /***/ }),
@@ -558,6 +560,26 @@ WeatherService = WeatherService_1 = __decorate([(0,_angular_core__WEBPACK_IMPORT
   providedIn: 'root'
 })], WeatherService);
 
+
+/***/ }),
+
+/***/ 7112:
+/*!******************************************!*\
+  !*** ./src/app/services/window.token.ts ***!
+  \******************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   WINDOW: () => (/* binding */ WINDOW)
+/* harmony export */ });
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ 7580);
+
+const WINDOW = new _angular_core__WEBPACK_IMPORTED_MODULE_0__.InjectionToken('Global Window', {
+  providedIn: 'root',
+  factory: () => window
+});
 
 /***/ }),
 
