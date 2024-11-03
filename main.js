@@ -126,354 +126,6 @@ const routing = _angular_router__WEBPACK_IMPORTED_MODULE_2__.RouterModule.forRoo
 
 /***/ }),
 
-/***/ 7129:
-/*!***********************************************************************************************************!*\
-  !*** ./src/app/components/current-conditions/components/current-condition/current-condition.component.ts ***!
-  \***********************************************************************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   CurrentConditionComponent: () => (/* binding */ CurrentConditionComponent)
-/* harmony export */ });
-/* harmony import */ var _current_condition_component_html_ngResource__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./current-condition.component.html?ngResource */ 9283);
-/* harmony import */ var _current_condition_component_css_ngResource__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./current-condition.component.css?ngResource */ 2610);
-/* harmony import */ var _current_condition_component_css_ngResource__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_current_condition_component_css_ngResource__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var _angular_common__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @angular/common */ 316);
-/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @angular/core */ 7580);
-/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @angular/router */ 5072);
-/* harmony import */ var app_components_tabs_tab_element_base__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! app/components/tabs/tab-element.base */ 7159);
-/* harmony import */ var app_services__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! app/services */ 8379);
-var __decorate = undefined && undefined.__decorate || function (decorators, target, key, desc) {
-  var c = arguments.length,
-    r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc,
-    d;
-  if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-  return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-
-
-
-
-
-
-
-
-let CurrentConditionComponent = class CurrentConditionComponent extends app_components_tabs_tab_element_base__WEBPACK_IMPORTED_MODULE_2__.TabElementBase {
-  constructor() {
-    super(...arguments);
-    this.locationService = (0,_angular_core__WEBPACK_IMPORTED_MODULE_4__.inject)(app_services__WEBPACK_IMPORTED_MODULE_3__.LocationService);
-    this.weatherService = (0,_angular_core__WEBPACK_IMPORTED_MODULE_4__.inject)(app_services__WEBPACK_IMPORTED_MODULE_3__.WeatherService);
-    this.location = _angular_core__WEBPACK_IMPORTED_MODULE_4__.input.required();
-    this.canSelfRemove = (0,_angular_core__WEBPACK_IMPORTED_MODULE_4__.input)(true);
-  }
-  remove() {
-    const {
-      zip
-    } = this.location();
-    this.locationService.removeLocation(zip);
-    this.weatherService.removeCurrentConditions(zip);
-  }
-  static {
-    this.propDecorators = {
-      location: [{
-        type: _angular_core__WEBPACK_IMPORTED_MODULE_4__.Input,
-        args: [{
-          isSignal: true,
-          alias: "location",
-          required: true,
-          transform: undefined
-        }]
-      }],
-      canSelfRemove: [{
-        type: _angular_core__WEBPACK_IMPORTED_MODULE_4__.Input,
-        args: [{
-          isSignal: true,
-          alias: "canSelfRemove",
-          required: false,
-          transform: undefined
-        }]
-      }]
-    };
-  }
-};
-CurrentConditionComponent = __decorate([(0,_angular_core__WEBPACK_IMPORTED_MODULE_4__.Component)({
-  selector: 'current-condition',
-  template: _current_condition_component_html_ngResource__WEBPACK_IMPORTED_MODULE_0__,
-  imports: [_angular_common__WEBPACK_IMPORTED_MODULE_5__.CommonModule, _angular_router__WEBPACK_IMPORTED_MODULE_6__.RouterLink],
-  standalone: true,
-  changeDetection: _angular_core__WEBPACK_IMPORTED_MODULE_4__.ChangeDetectionStrategy.OnPush,
-  styles: [(_current_condition_component_css_ngResource__WEBPACK_IMPORTED_MODULE_1___default())]
-})], CurrentConditionComponent);
-
-
-/***/ }),
-
-/***/ 4371:
-/*!*******************************************************************************!*\
-  !*** ./src/app/components/current-conditions/current-conditions.component.ts ***!
-  \*******************************************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   CurrentConditionsComponent: () => (/* binding */ CurrentConditionsComponent)
-/* harmony export */ });
-/* harmony import */ var _current_conditions_component_html_ngResource__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./current-conditions.component.html?ngResource */ 8869);
-/* harmony import */ var _current_conditions_component_css_ngResource__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./current-conditions.component.css?ngResource */ 6532);
-/* harmony import */ var _current_conditions_component_css_ngResource__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_current_conditions_component_css_ngResource__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var _angular_common__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @angular/common */ 316);
-/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @angular/core */ 7580);
-/* harmony import */ var _tabs_tabs_component__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../tabs/tabs.component */ 2075);
-/* harmony import */ var _components_current_condition_current_condition_component__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./components/current-condition/current-condition.component */ 7129);
-var __decorate = undefined && undefined.__decorate || function (decorators, target, key, desc) {
-  var c = arguments.length,
-    r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc,
-    d;
-  if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-  return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-
-
-
-
-
-
-
-let CurrentConditionsComponent = class CurrentConditionsComponent {
-  constructor() {
-    this.conditions = (0,_angular_core__WEBPACK_IMPORTED_MODULE_4__.input)([]);
-  }
-  static {
-    this.propDecorators = {
-      conditions: [{
-        type: _angular_core__WEBPACK_IMPORTED_MODULE_4__.Input,
-        args: [{
-          isSignal: true,
-          alias: "conditions",
-          required: false,
-          transform: undefined
-        }]
-      }]
-    };
-  }
-};
-CurrentConditionsComponent = __decorate([(0,_angular_core__WEBPACK_IMPORTED_MODULE_4__.Component)({
-  selector: 'app-current-conditions',
-  template: _current_conditions_component_html_ngResource__WEBPACK_IMPORTED_MODULE_0__,
-  changeDetection: _angular_core__WEBPACK_IMPORTED_MODULE_4__.ChangeDetectionStrategy.OnPush,
-  imports: [_angular_common__WEBPACK_IMPORTED_MODULE_5__.CommonModule, _components_current_condition_current_condition_component__WEBPACK_IMPORTED_MODULE_3__.CurrentConditionComponent, _tabs_tabs_component__WEBPACK_IMPORTED_MODULE_2__.TabsComponent],
-  standalone: true,
-  styles: [(_current_conditions_component_css_ngResource__WEBPACK_IMPORTED_MODULE_1___default())]
-})], CurrentConditionsComponent);
-
-
-/***/ }),
-
-/***/ 7455:
-/*!*************************************!*\
-  !*** ./src/app/components/index.ts ***!
-  \*************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   CurrentConditionsComponent: () => (/* reexport safe */ _current_conditions_current_conditions_component__WEBPACK_IMPORTED_MODULE_0__.CurrentConditionsComponent),
-/* harmony export */   ZipcodeEntryComponent: () => (/* reexport safe */ _zipcode_entry_zipcode_entry_component__WEBPACK_IMPORTED_MODULE_1__.ZipcodeEntryComponent)
-/* harmony export */ });
-/* harmony import */ var _current_conditions_current_conditions_component__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./current-conditions/current-conditions.component */ 4371);
-/* harmony import */ var _zipcode_entry_zipcode_entry_component__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./zipcode-entry/zipcode-entry.component */ 1537);
-
-
-
-/***/ }),
-
-/***/ 7159:
-/*!*****************************************************!*\
-  !*** ./src/app/components/tabs/tab-element.base.ts ***!
-  \*****************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   TabElementBase: () => (/* binding */ TabElementBase)
-/* harmony export */ });
-/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ 7580);
-var __decorate = undefined && undefined.__decorate || function (decorators, target, key, desc) {
-  var c = arguments.length,
-    r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc,
-    d;
-  if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-  return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-
-let TabElementBase = class TabElementBase {};
-TabElementBase = __decorate([(0,_angular_core__WEBPACK_IMPORTED_MODULE_0__.Directive)()], TabElementBase);
-
-
-/***/ }),
-
-/***/ 2075:
-/*!***************************************************!*\
-  !*** ./src/app/components/tabs/tabs.component.ts ***!
-  \***************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   TabsComponent: () => (/* binding */ TabsComponent)
-/* harmony export */ });
-/* harmony import */ var _tabs_component_html_ngResource__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./tabs.component.html?ngResource */ 5965);
-/* harmony import */ var _tabs_component_css_ngResource__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./tabs.component.css?ngResource */ 4436);
-/* harmony import */ var _tabs_component_css_ngResource__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_tabs_component_css_ngResource__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var _angular_common__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/common */ 316);
-/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/core */ 7580);
-var __decorate = undefined && undefined.__decorate || function (decorators, target, key, desc) {
-  var c = arguments.length,
-    r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc,
-    d;
-  if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-  return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-
-
-
-
-
-let TabsComponent = class TabsComponent {
-  constructor() {
-    this.data = (0,_angular_core__WEBPACK_IMPORTED_MODULE_2__.input)([]);
-    this.state = (0,_angular_core__WEBPACK_IMPORTED_MODULE_2__.signal)({
-      activeIndex: 0
-    });
-    this.tabContentTmpl = _angular_core__WEBPACK_IMPORTED_MODULE_2__.contentChild.required('tabContent', {
-      read: _angular_core__WEBPACK_IMPORTED_MODULE_2__.TemplateRef
-    });
-    this.tabTmpl = _angular_core__WEBPACK_IMPORTED_MODULE_2__.contentChild.required('tab', {
-      read: _angular_core__WEBPACK_IMPORTED_MODULE_2__.TemplateRef
-    });
-    this.tabData = (0,_angular_core__WEBPACK_IMPORTED_MODULE_2__.contentChildren)('tabContentItem');
-    (0,_angular_core__WEBPACK_IMPORTED_MODULE_2__.effect)(() => {
-      this.data();
-    });
-  }
-  onSetActiveIndex(index) {
-    if (this.state().activeIndex === index) return;
-    this.state.update(state => ({
-      ...state,
-      activeIndex: index
-    }));
-  }
-  onRemoveIndex(event, index) {
-    event.stopPropagation();
-    this.tabData()[index].remove();
-    this.state.update(state => ({
-      ...state,
-      activeIndex: index - 1 > 0 ? index - 1 : 0
-    }));
-  }
-  static {
-    this.ctorParameters = () => [];
-  }
-  static {
-    this.propDecorators = {
-      data: [{
-        type: _angular_core__WEBPACK_IMPORTED_MODULE_2__.Input,
-        args: [{
-          isSignal: true,
-          alias: "data",
-          required: false,
-          transform: undefined
-        }]
-      }],
-      tabContentTmpl: [{
-        type: _angular_core__WEBPACK_IMPORTED_MODULE_2__.ContentChild,
-        args: ['tabContent', {
-          ...{
-            read: _angular_core__WEBPACK_IMPORTED_MODULE_2__.TemplateRef
-          },
-          isSignal: true
-        }]
-      }],
-      tabTmpl: [{
-        type: _angular_core__WEBPACK_IMPORTED_MODULE_2__.ContentChild,
-        args: ['tab', {
-          ...{
-            read: _angular_core__WEBPACK_IMPORTED_MODULE_2__.TemplateRef
-          },
-          isSignal: true
-        }]
-      }],
-      tabData: [{
-        type: _angular_core__WEBPACK_IMPORTED_MODULE_2__.ContentChildren,
-        args: ['tabContentItem', {
-          isSignal: true
-        }]
-      }]
-    };
-  }
-};
-TabsComponent = __decorate([(0,_angular_core__WEBPACK_IMPORTED_MODULE_2__.Component)({
-  selector: 'tabs-component',
-  template: _tabs_component_html_ngResource__WEBPACK_IMPORTED_MODULE_0__,
-  imports: [_angular_common__WEBPACK_IMPORTED_MODULE_3__.CommonModule],
-  standalone: true,
-  styles: [(_tabs_component_css_ngResource__WEBPACK_IMPORTED_MODULE_1___default())]
-})], TabsComponent);
-
-
-/***/ }),
-
-/***/ 1537:
-/*!*********************************************************************!*\
-  !*** ./src/app/components/zipcode-entry/zipcode-entry.component.ts ***!
-  \*********************************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   ZipcodeEntryComponent: () => (/* binding */ ZipcodeEntryComponent)
-/* harmony export */ });
-/* harmony import */ var _zipcode_entry_component_html_ngResource__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./zipcode-entry.component.html?ngResource */ 2851);
-/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ 7580);
-var __decorate = undefined && undefined.__decorate || function (decorators, target, key, desc) {
-  var c = arguments.length,
-    r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc,
-    d;
-  if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-  return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-
-
-
-let ZipcodeEntryComponent = class ZipcodeEntryComponent {
-  constructor() {
-    this.addLocation = (0,_angular_core__WEBPACK_IMPORTED_MODULE_1__.output)();
-  }
-  static {
-    this.propDecorators = {
-      addLocation: [{
-        type: _angular_core__WEBPACK_IMPORTED_MODULE_1__.Output,
-        args: ["addLocation"]
-      }]
-    };
-  }
-};
-ZipcodeEntryComponent = __decorate([(0,_angular_core__WEBPACK_IMPORTED_MODULE_1__.Component)({
-  selector: 'app-zipcode-entry',
-  template: _zipcode_entry_component_html_ngResource__WEBPACK_IMPORTED_MODULE_0__,
-  standalone: true
-})], ZipcodeEntryComponent);
-
-
-/***/ }),
-
 /***/ 3335:
 /*!******************************************************************!*\
   !*** ./src/app/pages/forecasts-list/forecasts-list.component.ts ***!
@@ -561,8 +213,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _main_page_component_css_ngResource__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./main-page.component.css?ngResource */ 3982);
 /* harmony import */ var _main_page_component_css_ngResource__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_main_page_component_css_ngResource__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @angular/core */ 7580);
-/* harmony import */ var app_components__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! app/components */ 7455);
-/* harmony import */ var app_services__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! app/services */ 8379);
+/* harmony import */ var app_services__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! app/services */ 8379);
+/* harmony import */ var app_shared_components__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! app/shared/components */ 2691);
 var __decorate = undefined && undefined.__decorate || function (decorators, target, key, desc) {
   var c = arguments.length,
     r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc,
@@ -577,8 +229,8 @@ var __decorate = undefined && undefined.__decorate || function (decorators, targ
 
 let MainPageComponent = class MainPageComponent {
   constructor() {
-    this.locationService = (0,_angular_core__WEBPACK_IMPORTED_MODULE_4__.inject)(app_services__WEBPACK_IMPORTED_MODULE_3__.LocationService);
-    this.weatherService = (0,_angular_core__WEBPACK_IMPORTED_MODULE_4__.inject)(app_services__WEBPACK_IMPORTED_MODULE_3__.WeatherService);
+    this.locationService = (0,_angular_core__WEBPACK_IMPORTED_MODULE_4__.inject)(app_services__WEBPACK_IMPORTED_MODULE_2__.LocationService);
+    this.weatherService = (0,_angular_core__WEBPACK_IMPORTED_MODULE_4__.inject)(app_services__WEBPACK_IMPORTED_MODULE_2__.WeatherService);
     this.state = (0,_angular_core__WEBPACK_IMPORTED_MODULE_4__.signal)({
       error: null
     });
@@ -603,7 +255,7 @@ let MainPageComponent = class MainPageComponent {
 MainPageComponent = __decorate([(0,_angular_core__WEBPACK_IMPORTED_MODULE_4__.Component)({
   selector: 'app-main-page',
   template: _main_page_component_html_ngResource__WEBPACK_IMPORTED_MODULE_0__,
-  imports: [app_components__WEBPACK_IMPORTED_MODULE_2__.ZipcodeEntryComponent, app_components__WEBPACK_IMPORTED_MODULE_2__.CurrentConditionsComponent],
+  imports: [app_shared_components__WEBPACK_IMPORTED_MODULE_3__.ZipcodeEntryComponent, app_shared_components__WEBPACK_IMPORTED_MODULE_3__.CurrentConditionsComponent],
   standalone: true,
   styles: [(_main_page_component_css_ngResource__WEBPACK_IMPORTED_MODULE_1___default())]
 })], MainPageComponent);
@@ -785,6 +437,360 @@ WeatherService = WeatherService_1 = __decorate([(0,_angular_core__WEBPACK_IMPORT
 
 /***/ }),
 
+/***/ 2029:
+/*!******************************************************************************************************************!*\
+  !*** ./src/app/shared/components/current-conditions/components/current-condition/current-condition.component.ts ***!
+  \******************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   CurrentConditionComponent: () => (/* binding */ CurrentConditionComponent)
+/* harmony export */ });
+/* harmony import */ var _current_condition_component_html_ngResource__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./current-condition.component.html?ngResource */ 4279);
+/* harmony import */ var _current_condition_component_css_ngResource__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./current-condition.component.css?ngResource */ 8912);
+/* harmony import */ var _current_condition_component_css_ngResource__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_current_condition_component_css_ngResource__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _angular_common__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @angular/common */ 316);
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @angular/core */ 7580);
+/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @angular/router */ 5072);
+/* harmony import */ var app_services__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! app/services */ 8379);
+/* harmony import */ var app_shared_components_tabs_tab_element_base__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! app/shared/components/tabs/tab-element.base */ 9627);
+var __decorate = undefined && undefined.__decorate || function (decorators, target, key, desc) {
+  var c = arguments.length,
+    r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc,
+    d;
+  if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+  return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+
+
+
+
+
+
+
+
+let CurrentConditionComponent = class CurrentConditionComponent extends app_shared_components_tabs_tab_element_base__WEBPACK_IMPORTED_MODULE_3__.TabElementBase {
+  constructor() {
+    super(...arguments);
+    this.locationService = (0,_angular_core__WEBPACK_IMPORTED_MODULE_4__.inject)(app_services__WEBPACK_IMPORTED_MODULE_2__.LocationService);
+    this.weatherService = (0,_angular_core__WEBPACK_IMPORTED_MODULE_4__.inject)(app_services__WEBPACK_IMPORTED_MODULE_2__.WeatherService);
+    this.location = _angular_core__WEBPACK_IMPORTED_MODULE_4__.input.required();
+    this.canSelfRemove = (0,_angular_core__WEBPACK_IMPORTED_MODULE_4__.input)(true);
+  }
+  remove() {
+    const {
+      zip
+    } = this.location();
+    this.locationService.removeLocation(zip);
+    this.weatherService.removeCurrentConditions(zip);
+  }
+  static {
+    this.propDecorators = {
+      location: [{
+        type: _angular_core__WEBPACK_IMPORTED_MODULE_4__.Input,
+        args: [{
+          isSignal: true,
+          alias: "location",
+          required: true,
+          transform: undefined
+        }]
+      }],
+      canSelfRemove: [{
+        type: _angular_core__WEBPACK_IMPORTED_MODULE_4__.Input,
+        args: [{
+          isSignal: true,
+          alias: "canSelfRemove",
+          required: false,
+          transform: undefined
+        }]
+      }]
+    };
+  }
+};
+CurrentConditionComponent = __decorate([(0,_angular_core__WEBPACK_IMPORTED_MODULE_4__.Component)({
+  selector: 'current-condition',
+  template: _current_condition_component_html_ngResource__WEBPACK_IMPORTED_MODULE_0__,
+  imports: [_angular_common__WEBPACK_IMPORTED_MODULE_5__.CommonModule, _angular_router__WEBPACK_IMPORTED_MODULE_6__.RouterLink],
+  standalone: true,
+  changeDetection: _angular_core__WEBPACK_IMPORTED_MODULE_4__.ChangeDetectionStrategy.OnPush,
+  styles: [(_current_condition_component_css_ngResource__WEBPACK_IMPORTED_MODULE_1___default())]
+})], CurrentConditionComponent);
+
+
+/***/ }),
+
+/***/ 615:
+/*!**************************************************************************************!*\
+  !*** ./src/app/shared/components/current-conditions/current-conditions.component.ts ***!
+  \**************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   CurrentConditionsComponent: () => (/* binding */ CurrentConditionsComponent)
+/* harmony export */ });
+/* harmony import */ var _current_conditions_component_html_ngResource__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./current-conditions.component.html?ngResource */ 5481);
+/* harmony import */ var _current_conditions_component_css_ngResource__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./current-conditions.component.css?ngResource */ 5658);
+/* harmony import */ var _current_conditions_component_css_ngResource__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_current_conditions_component_css_ngResource__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _angular_common__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @angular/common */ 316);
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @angular/core */ 7580);
+/* harmony import */ var _tabs_tabs_component__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../tabs/tabs.component */ 5119);
+/* harmony import */ var _components_current_condition_current_condition_component__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./components/current-condition/current-condition.component */ 2029);
+var __decorate = undefined && undefined.__decorate || function (decorators, target, key, desc) {
+  var c = arguments.length,
+    r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc,
+    d;
+  if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+  return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+
+
+
+
+
+
+
+let CurrentConditionsComponent = class CurrentConditionsComponent {
+  constructor() {
+    this.conditions = (0,_angular_core__WEBPACK_IMPORTED_MODULE_4__.input)([]);
+  }
+  static {
+    this.propDecorators = {
+      conditions: [{
+        type: _angular_core__WEBPACK_IMPORTED_MODULE_4__.Input,
+        args: [{
+          isSignal: true,
+          alias: "conditions",
+          required: false,
+          transform: undefined
+        }]
+      }]
+    };
+  }
+};
+CurrentConditionsComponent = __decorate([(0,_angular_core__WEBPACK_IMPORTED_MODULE_4__.Component)({
+  selector: 'app-current-conditions',
+  template: _current_conditions_component_html_ngResource__WEBPACK_IMPORTED_MODULE_0__,
+  changeDetection: _angular_core__WEBPACK_IMPORTED_MODULE_4__.ChangeDetectionStrategy.OnPush,
+  imports: [_angular_common__WEBPACK_IMPORTED_MODULE_5__.CommonModule, _components_current_condition_current_condition_component__WEBPACK_IMPORTED_MODULE_3__.CurrentConditionComponent, _tabs_tabs_component__WEBPACK_IMPORTED_MODULE_2__.TabsComponent],
+  standalone: true,
+  styles: [(_current_conditions_component_css_ngResource__WEBPACK_IMPORTED_MODULE_1___default())]
+})], CurrentConditionsComponent);
+
+
+/***/ }),
+
+/***/ 2691:
+/*!********************************************!*\
+  !*** ./src/app/shared/components/index.ts ***!
+  \********************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   CurrentConditionsComponent: () => (/* reexport safe */ _current_conditions_current_conditions_component__WEBPACK_IMPORTED_MODULE_0__.CurrentConditionsComponent),
+/* harmony export */   TabElementBase: () => (/* reexport safe */ _tabs_tab_element_base__WEBPACK_IMPORTED_MODULE_1__.TabElementBase),
+/* harmony export */   TabsComponent: () => (/* reexport safe */ _tabs_tabs_component__WEBPACK_IMPORTED_MODULE_2__.TabsComponent),
+/* harmony export */   ZipcodeEntryComponent: () => (/* reexport safe */ _zipcode_entry_zipcode_entry_component__WEBPACK_IMPORTED_MODULE_3__.ZipcodeEntryComponent)
+/* harmony export */ });
+/* harmony import */ var _current_conditions_current_conditions_component__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./current-conditions/current-conditions.component */ 615);
+/* harmony import */ var _tabs_tab_element_base__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./tabs/tab-element.base */ 9627);
+/* harmony import */ var _tabs_tabs_component__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./tabs/tabs.component */ 5119);
+/* harmony import */ var _zipcode_entry_zipcode_entry_component__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./zipcode-entry/zipcode-entry.component */ 8053);
+
+
+
+
+
+/***/ }),
+
+/***/ 9627:
+/*!************************************************************!*\
+  !*** ./src/app/shared/components/tabs/tab-element.base.ts ***!
+  \************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   TabElementBase: () => (/* binding */ TabElementBase)
+/* harmony export */ });
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ 7580);
+var __decorate = undefined && undefined.__decorate || function (decorators, target, key, desc) {
+  var c = arguments.length,
+    r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc,
+    d;
+  if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+  return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+
+let TabElementBase = class TabElementBase {};
+TabElementBase = __decorate([(0,_angular_core__WEBPACK_IMPORTED_MODULE_0__.Directive)()], TabElementBase);
+
+
+/***/ }),
+
+/***/ 5119:
+/*!**********************************************************!*\
+  !*** ./src/app/shared/components/tabs/tabs.component.ts ***!
+  \**********************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   TabsComponent: () => (/* binding */ TabsComponent)
+/* harmony export */ });
+/* harmony import */ var _tabs_component_html_ngResource__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./tabs.component.html?ngResource */ 3377);
+/* harmony import */ var _tabs_component_css_ngResource__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./tabs.component.css?ngResource */ 1898);
+/* harmony import */ var _tabs_component_css_ngResource__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_tabs_component_css_ngResource__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _angular_common__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/common */ 316);
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/core */ 7580);
+var __decorate = undefined && undefined.__decorate || function (decorators, target, key, desc) {
+  var c = arguments.length,
+    r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc,
+    d;
+  if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+  return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+
+
+
+
+
+let TabsComponent = class TabsComponent {
+  constructor() {
+    this.data = (0,_angular_core__WEBPACK_IMPORTED_MODULE_2__.input)([]);
+    this.state = (0,_angular_core__WEBPACK_IMPORTED_MODULE_2__.signal)({
+      activeIndex: 0
+    });
+    this.tabContentTmpl = _angular_core__WEBPACK_IMPORTED_MODULE_2__.contentChild.required('tabContent', {
+      read: _angular_core__WEBPACK_IMPORTED_MODULE_2__.TemplateRef
+    });
+    this.tabTmpl = _angular_core__WEBPACK_IMPORTED_MODULE_2__.contentChild.required('tab', {
+      read: _angular_core__WEBPACK_IMPORTED_MODULE_2__.TemplateRef
+    });
+    this.tabData = (0,_angular_core__WEBPACK_IMPORTED_MODULE_2__.contentChildren)('tabContentItem');
+    (0,_angular_core__WEBPACK_IMPORTED_MODULE_2__.effect)(() => {
+      this.data();
+    });
+  }
+  onSetActiveIndex(index) {
+    if (this.state().activeIndex === index) return;
+    this.state.update(state => ({
+      ...state,
+      activeIndex: index
+    }));
+  }
+  onRemoveIndex(event, index) {
+    event.stopPropagation();
+    this.tabData()[index].remove();
+    this.state.update(state => ({
+      ...state,
+      activeIndex: index - 1 > 0 ? index - 1 : 0
+    }));
+  }
+  static {
+    this.ctorParameters = () => [];
+  }
+  static {
+    this.propDecorators = {
+      data: [{
+        type: _angular_core__WEBPACK_IMPORTED_MODULE_2__.Input,
+        args: [{
+          isSignal: true,
+          alias: "data",
+          required: false,
+          transform: undefined
+        }]
+      }],
+      tabContentTmpl: [{
+        type: _angular_core__WEBPACK_IMPORTED_MODULE_2__.ContentChild,
+        args: ['tabContent', {
+          ...{
+            read: _angular_core__WEBPACK_IMPORTED_MODULE_2__.TemplateRef
+          },
+          isSignal: true
+        }]
+      }],
+      tabTmpl: [{
+        type: _angular_core__WEBPACK_IMPORTED_MODULE_2__.ContentChild,
+        args: ['tab', {
+          ...{
+            read: _angular_core__WEBPACK_IMPORTED_MODULE_2__.TemplateRef
+          },
+          isSignal: true
+        }]
+      }],
+      tabData: [{
+        type: _angular_core__WEBPACK_IMPORTED_MODULE_2__.ContentChildren,
+        args: ['tabContentItem', {
+          isSignal: true
+        }]
+      }]
+    };
+  }
+};
+TabsComponent = __decorate([(0,_angular_core__WEBPACK_IMPORTED_MODULE_2__.Component)({
+  selector: 'tabs-component',
+  template: _tabs_component_html_ngResource__WEBPACK_IMPORTED_MODULE_0__,
+  imports: [_angular_common__WEBPACK_IMPORTED_MODULE_3__.CommonModule],
+  standalone: true,
+  styles: [(_tabs_component_css_ngResource__WEBPACK_IMPORTED_MODULE_1___default())]
+})], TabsComponent);
+
+
+/***/ }),
+
+/***/ 8053:
+/*!****************************************************************************!*\
+  !*** ./src/app/shared/components/zipcode-entry/zipcode-entry.component.ts ***!
+  \****************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   ZipcodeEntryComponent: () => (/* binding */ ZipcodeEntryComponent)
+/* harmony export */ });
+/* harmony import */ var _zipcode_entry_component_html_ngResource__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./zipcode-entry.component.html?ngResource */ 3671);
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ 7580);
+var __decorate = undefined && undefined.__decorate || function (decorators, target, key, desc) {
+  var c = arguments.length,
+    r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc,
+    d;
+  if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+  return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+
+
+
+let ZipcodeEntryComponent = class ZipcodeEntryComponent {
+  constructor() {
+    this.addLocation = (0,_angular_core__WEBPACK_IMPORTED_MODULE_1__.output)();
+  }
+  static {
+    this.propDecorators = {
+      addLocation: [{
+        type: _angular_core__WEBPACK_IMPORTED_MODULE_1__.Output,
+        args: ["addLocation"]
+      }]
+    };
+  }
+};
+ZipcodeEntryComponent = __decorate([(0,_angular_core__WEBPACK_IMPORTED_MODULE_1__.Component)({
+  selector: 'app-zipcode-entry',
+  template: _zipcode_entry_component_html_ngResource__WEBPACK_IMPORTED_MODULE_0__,
+  standalone: true
+})], ZipcodeEntryComponent);
+
+
+/***/ }),
+
 /***/ 5312:
 /*!*****************************************!*\
   !*** ./src/environments/environment.ts ***!
@@ -847,15 +853,78 @@ module.exports = ___CSS_LOADER_EXPORT___.toString();
 
 /***/ }),
 
-/***/ 2610:
-/*!***********************************************************************************************************************!*\
-  !*** ./src/app/components/current-conditions/components/current-condition/current-condition.component.css?ngResource ***!
-  \***********************************************************************************************************************/
+/***/ 2246:
+/*!******************************************************************************!*\
+  !*** ./src/app/pages/forecasts-list/forecasts-list.component.css?ngResource ***!
+  \******************************************************************************/
 /***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
 // Imports
-var ___CSS_LOADER_API_SOURCEMAP_IMPORT___ = __webpack_require__(/*! ../../../../../../node_modules/css-loader/dist/runtime/sourceMaps.js */ 3142);
-var ___CSS_LOADER_API_IMPORT___ = __webpack_require__(/*! ../../../../../../node_modules/css-loader/dist/runtime/api.js */ 5950);
+var ___CSS_LOADER_API_SOURCEMAP_IMPORT___ = __webpack_require__(/*! ../../../../node_modules/css-loader/dist/runtime/sourceMaps.js */ 3142);
+var ___CSS_LOADER_API_IMPORT___ = __webpack_require__(/*! ../../../../node_modules/css-loader/dist/runtime/api.js */ 5950);
+var ___CSS_LOADER_EXPORT___ = ___CSS_LOADER_API_IMPORT___(___CSS_LOADER_API_SOURCEMAP_IMPORT___);
+// Module
+___CSS_LOADER_EXPORT___.push([module.id, `.icon {
+  width: 45px;
+  height: 45px;
+  position: absolute;
+  right: 20px;
+  top: -2px;
+}
+`, "",{"version":3,"sources":["webpack://./src/app/pages/forecasts-list/forecasts-list.component.css"],"names":[],"mappings":"AAAA;EACE,WAAW;EACX,YAAY;EACZ,kBAAkB;EAClB,WAAW;EACX,SAAS;AACX","sourcesContent":[".icon {\n  width: 45px;\n  height: 45px;\n  position: absolute;\n  right: 20px;\n  top: -2px;\n}\n"],"sourceRoot":""}]);
+// Exports
+module.exports = ___CSS_LOADER_EXPORT___.toString();
+
+
+/***/ }),
+
+/***/ 3982:
+/*!********************************************************************!*\
+  !*** ./src/app/pages/main-page/main-page.component.css?ngResource ***!
+  \********************************************************************/
+/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
+
+// Imports
+var ___CSS_LOADER_API_SOURCEMAP_IMPORT___ = __webpack_require__(/*! ../../../../node_modules/css-loader/dist/runtime/sourceMaps.js */ 3142);
+var ___CSS_LOADER_API_IMPORT___ = __webpack_require__(/*! ../../../../node_modules/css-loader/dist/runtime/api.js */ 5950);
+var ___CSS_LOADER_EXPORT___ = ___CSS_LOADER_API_IMPORT___(___CSS_LOADER_API_SOURCEMAP_IMPORT___);
+// Module
+___CSS_LOADER_EXPORT___.push([module.id, `.error {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px;
+  margin: 5px 0;
+  border: 1px solid #b41d1d;
+  border-radius: 5px;
+  background-color: #febebed5;
+}
+
+.error__icon {
+  font-size: 24px;
+  text-shadow: 0px 0px 2px hsl(0deg 0% 0% / 60%);
+}
+
+.error__text,
+.error__icon {
+  margin: 0;
+}
+`, "",{"version":3,"sources":["webpack://./src/app/pages/main-page/main-page.component.css"],"names":[],"mappings":"AAAA;EACE,aAAa;EACb,mBAAmB;EACnB,SAAS;EACT,aAAa;EACb,aAAa;EACb,yBAAyB;EACzB,kBAAkB;EAClB,2BAA2B;AAC7B;;AAEA;EACE,eAAe;EACf,8CAA8C;AAChD;;AAEA;;EAEE,SAAS;AACX","sourcesContent":[".error {\n  display: flex;\n  align-items: center;\n  gap: 10px;\n  padding: 10px;\n  margin: 5px 0;\n  border: 1px solid #b41d1d;\n  border-radius: 5px;\n  background-color: #febebed5;\n}\n\n.error__icon {\n  font-size: 24px;\n  text-shadow: 0px 0px 2px hsl(0deg 0% 0% / 60%);\n}\n\n.error__text,\n.error__icon {\n  margin: 0;\n}\n"],"sourceRoot":""}]);
+// Exports
+module.exports = ___CSS_LOADER_EXPORT___.toString();
+
+
+/***/ }),
+
+/***/ 8912:
+/*!******************************************************************************************************************************!*\
+  !*** ./src/app/shared/components/current-conditions/components/current-condition/current-condition.component.css?ngResource ***!
+  \******************************************************************************************************************************/
+/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
+
+// Imports
+var ___CSS_LOADER_API_SOURCEMAP_IMPORT___ = __webpack_require__(/*! ../../../../../../../node_modules/css-loader/dist/runtime/sourceMaps.js */ 3142);
+var ___CSS_LOADER_API_IMPORT___ = __webpack_require__(/*! ../../../../../../../node_modules/css-loader/dist/runtime/api.js */ 5950);
 var ___CSS_LOADER_EXPORT___ = ___CSS_LOADER_API_IMPORT___(___CSS_LOADER_API_SOURCEMAP_IMPORT___);
 // Module
 ___CSS_LOADER_EXPORT___.push([module.id, `:host {
@@ -870,22 +939,22 @@ ___CSS_LOADER_EXPORT___.push([module.id, `:host {
   display: flex;
   justify-content: space-between;
 }
-`, "",{"version":3,"sources":["webpack://./src/app/components/current-conditions/components/current-condition/current-condition.component.css"],"names":[],"mappings":"AAAA;EACE,cAAc;AAChB;;AAEA;EACE,eAAe;AACjB;;AAEA;EACE,aAAa;EACb,8BAA8B;AAChC","sourcesContent":[":host {\n  display: block;\n}\n\n.close {\n  cursor: pointer;\n}\n\n.flex {\n  display: flex;\n  justify-content: space-between;\n}\n"],"sourceRoot":""}]);
+`, "",{"version":3,"sources":["webpack://./src/app/shared/components/current-conditions/components/current-condition/current-condition.component.css"],"names":[],"mappings":"AAAA;EACE,cAAc;AAChB;;AAEA;EACE,eAAe;AACjB;;AAEA;EACE,aAAa;EACb,8BAA8B;AAChC","sourcesContent":[":host {\n  display: block;\n}\n\n.close {\n  cursor: pointer;\n}\n\n.flex {\n  display: flex;\n  justify-content: space-between;\n}\n"],"sourceRoot":""}]);
 // Exports
 module.exports = ___CSS_LOADER_EXPORT___.toString();
 
 
 /***/ }),
 
-/***/ 6532:
-/*!*******************************************************************************************!*\
-  !*** ./src/app/components/current-conditions/current-conditions.component.css?ngResource ***!
-  \*******************************************************************************************/
+/***/ 5658:
+/*!**************************************************************************************************!*\
+  !*** ./src/app/shared/components/current-conditions/current-conditions.component.css?ngResource ***!
+  \**************************************************************************************************/
 /***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
 // Imports
-var ___CSS_LOADER_API_SOURCEMAP_IMPORT___ = __webpack_require__(/*! ../../../../node_modules/css-loader/dist/runtime/sourceMaps.js */ 3142);
-var ___CSS_LOADER_API_IMPORT___ = __webpack_require__(/*! ../../../../node_modules/css-loader/dist/runtime/api.js */ 5950);
+var ___CSS_LOADER_API_SOURCEMAP_IMPORT___ = __webpack_require__(/*! ../../../../../node_modules/css-loader/dist/runtime/sourceMaps.js */ 3142);
+var ___CSS_LOADER_API_IMPORT___ = __webpack_require__(/*! ../../../../../node_modules/css-loader/dist/runtime/api.js */ 5950);
 var ___CSS_LOADER_EXPORT___ = ___CSS_LOADER_API_IMPORT___(___CSS_LOADER_API_SOURCEMAP_IMPORT___);
 // Module
 ___CSS_LOADER_EXPORT___.push([module.id, `:host {
@@ -900,22 +969,22 @@ ___CSS_LOADER_EXPORT___.push([module.id, `:host {
   display: flex;
   justify-content: space-between;
 }
-`, "",{"version":3,"sources":["webpack://./src/app/components/current-conditions/current-conditions.component.css"],"names":[],"mappings":"AAAA;EACE,cAAc;AAChB;;AAEA;EACE,eAAe;AACjB;;AAEA;EACE,aAAa;EACb,8BAA8B;AAChC","sourcesContent":[":host {\n  display: block;\n}\n\n.close {\n  cursor: pointer;\n}\n\n.flex {\n  display: flex;\n  justify-content: space-between;\n}\n"],"sourceRoot":""}]);
+`, "",{"version":3,"sources":["webpack://./src/app/shared/components/current-conditions/current-conditions.component.css"],"names":[],"mappings":"AAAA;EACE,cAAc;AAChB;;AAEA;EACE,eAAe;AACjB;;AAEA;EACE,aAAa;EACb,8BAA8B;AAChC","sourcesContent":[":host {\n  display: block;\n}\n\n.close {\n  cursor: pointer;\n}\n\n.flex {\n  display: flex;\n  justify-content: space-between;\n}\n"],"sourceRoot":""}]);
 // Exports
 module.exports = ___CSS_LOADER_EXPORT___.toString();
 
 
 /***/ }),
 
-/***/ 4436:
-/*!***************************************************************!*\
-  !*** ./src/app/components/tabs/tabs.component.css?ngResource ***!
-  \***************************************************************/
+/***/ 1898:
+/*!**********************************************************************!*\
+  !*** ./src/app/shared/components/tabs/tabs.component.css?ngResource ***!
+  \**********************************************************************/
 /***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
 // Imports
-var ___CSS_LOADER_API_SOURCEMAP_IMPORT___ = __webpack_require__(/*! ../../../../node_modules/css-loader/dist/runtime/sourceMaps.js */ 3142);
-var ___CSS_LOADER_API_IMPORT___ = __webpack_require__(/*! ../../../../node_modules/css-loader/dist/runtime/api.js */ 5950);
+var ___CSS_LOADER_API_SOURCEMAP_IMPORT___ = __webpack_require__(/*! ../../../../../node_modules/css-loader/dist/runtime/sourceMaps.js */ 3142);
+var ___CSS_LOADER_API_IMPORT___ = __webpack_require__(/*! ../../../../../node_modules/css-loader/dist/runtime/api.js */ 5950);
 var ___CSS_LOADER_EXPORT___ = ___CSS_LOADER_API_IMPORT___(___CSS_LOADER_API_SOURCEMAP_IMPORT___);
 // Module
 ___CSS_LOADER_EXPORT___.push([module.id, `:host {
@@ -971,69 +1040,7 @@ ___CSS_LOADER_EXPORT___.push([module.id, `:host {
   text-align: center;
   color: #ccc;
 }
-`, "",{"version":3,"sources":["webpack://./src/app/components/tabs/tabs.component.css"],"names":[],"mappings":"AAAA;EACE,cAAc;AAChB;;AAEA;EACE,aAAa;EACb,QAAQ;EACR,UAAU;EACV,SAAS;EACT,qBAAqB;AACvB;;AAEA;EACE,iBAAiB;EACjB,yBAAyB;EACzB,yBAAyB;EACzB,YAAY;EACZ,eAAe;EACf,8CAA8C;AAChD;;AAEA;EACE,yBAAyB;AAC3B;;AAEA;EACE,yBAAyB;AAC3B;;AAEA;EACE,UAAU;EACV,kBAAkB;EAClB,YAAY;EACZ,6BAA6B;AAC/B;;AAEA;EACE,cAAc;AAChB;;AAEA;EACE,cAAc;AAChB;;AAEA;EACE,kBAAkB;EAClB,yBAAyB;AAC3B;;AAEA;EACE,kBAAkB;EAClB,WAAW;AACb","sourcesContent":[":host {\n  display: block;\n}\n\n.tabs-switch {\n  display: flex;\n  gap: 5px;\n  padding: 0;\n  margin: 0;\n  list-style-type: none;\n}\n\n.tabs-switch__item {\n  padding: 5px 10px;\n  border: 1px solid #57595d;\n  background-color: #617aa0;\n  color: white;\n  cursor: pointer;\n  transition: background-color 0.15s ease-in-out;\n}\n\n.tabs-switch__item:hover {\n  background-color: #4a5e7c;\n}\n\n.tabs-switch__item.is-active {\n  background-color: #303d51;\n}\n\n.tabs-switch__close {\n  padding: 0;\n  margin: 0 0 0 10px;\n  border: none;\n  background-color: transparent;\n}\n\n.tabs-switch__close:hover {\n  color: #8ba5d0;\n}\n\n.tabs-switch__close:active {\n  color: #7288ac;\n}\n\n.tabs-preview {\n  padding: 20px 15px;\n  border: 1px solid #57595d;\n}\n\n.placeholder-text {\n  text-align: center;\n  color: #ccc;\n}\n"],"sourceRoot":""}]);
-// Exports
-module.exports = ___CSS_LOADER_EXPORT___.toString();
-
-
-/***/ }),
-
-/***/ 2246:
-/*!******************************************************************************!*\
-  !*** ./src/app/pages/forecasts-list/forecasts-list.component.css?ngResource ***!
-  \******************************************************************************/
-/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
-
-// Imports
-var ___CSS_LOADER_API_SOURCEMAP_IMPORT___ = __webpack_require__(/*! ../../../../node_modules/css-loader/dist/runtime/sourceMaps.js */ 3142);
-var ___CSS_LOADER_API_IMPORT___ = __webpack_require__(/*! ../../../../node_modules/css-loader/dist/runtime/api.js */ 5950);
-var ___CSS_LOADER_EXPORT___ = ___CSS_LOADER_API_IMPORT___(___CSS_LOADER_API_SOURCEMAP_IMPORT___);
-// Module
-___CSS_LOADER_EXPORT___.push([module.id, `.icon {
-  width: 45px;
-  height: 45px;
-  position: absolute;
-  right: 20px;
-  top: -2px;
-}
-`, "",{"version":3,"sources":["webpack://./src/app/pages/forecasts-list/forecasts-list.component.css"],"names":[],"mappings":"AAAA;EACE,WAAW;EACX,YAAY;EACZ,kBAAkB;EAClB,WAAW;EACX,SAAS;AACX","sourcesContent":[".icon {\n  width: 45px;\n  height: 45px;\n  position: absolute;\n  right: 20px;\n  top: -2px;\n}\n"],"sourceRoot":""}]);
-// Exports
-module.exports = ___CSS_LOADER_EXPORT___.toString();
-
-
-/***/ }),
-
-/***/ 3982:
-/*!********************************************************************!*\
-  !*** ./src/app/pages/main-page/main-page.component.css?ngResource ***!
-  \********************************************************************/
-/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
-
-// Imports
-var ___CSS_LOADER_API_SOURCEMAP_IMPORT___ = __webpack_require__(/*! ../../../../node_modules/css-loader/dist/runtime/sourceMaps.js */ 3142);
-var ___CSS_LOADER_API_IMPORT___ = __webpack_require__(/*! ../../../../node_modules/css-loader/dist/runtime/api.js */ 5950);
-var ___CSS_LOADER_EXPORT___ = ___CSS_LOADER_API_IMPORT___(___CSS_LOADER_API_SOURCEMAP_IMPORT___);
-// Module
-___CSS_LOADER_EXPORT___.push([module.id, `.error {
-  display: flex;
-  gap: 10px;
-  padding: 10px;
-  margin: 5px 0;
-  border: 1px solid #b41d1d;
-  border-radius: 5px;
-  background-color: #febebed5;
-}
-
-.error__icon {
-  font-size: 24px;
-  text-shadow: 0px 0px 2px hsl(0deg 0% 0% / 60%);
-}
-
-.error__text,
-.error__icon {
-  margin: 0;
-}
-`, "",{"version":3,"sources":["webpack://./src/app/pages/main-page/main-page.component.css"],"names":[],"mappings":"AAAA;EACE,aAAa;EACb,SAAS;EACT,aAAa;EACb,aAAa;EACb,yBAAyB;EACzB,kBAAkB;EAClB,2BAA2B;AAC7B;;AAEA;EACE,eAAe;EACf,8CAA8C;AAChD;;AAEA;;EAEE,SAAS;AACX","sourcesContent":[".error {\n  display: flex;\n  gap: 10px;\n  padding: 10px;\n  margin: 5px 0;\n  border: 1px solid #b41d1d;\n  border-radius: 5px;\n  background-color: #febebed5;\n}\n\n.error__icon {\n  font-size: 24px;\n  text-shadow: 0px 0px 2px hsl(0deg 0% 0% / 60%);\n}\n\n.error__text,\n.error__icon {\n  margin: 0;\n}\n"],"sourceRoot":""}]);
+`, "",{"version":3,"sources":["webpack://./src/app/shared/components/tabs/tabs.component.css"],"names":[],"mappings":"AAAA;EACE,cAAc;AAChB;;AAEA;EACE,aAAa;EACb,QAAQ;EACR,UAAU;EACV,SAAS;EACT,qBAAqB;AACvB;;AAEA;EACE,iBAAiB;EACjB,yBAAyB;EACzB,yBAAyB;EACzB,YAAY;EACZ,eAAe;EACf,8CAA8C;AAChD;;AAEA;EACE,yBAAyB;AAC3B;;AAEA;EACE,yBAAyB;AAC3B;;AAEA;EACE,UAAU;EACV,kBAAkB;EAClB,YAAY;EACZ,6BAA6B;AAC/B;;AAEA;EACE,cAAc;AAChB;;AAEA;EACE,cAAc;AAChB;;AAEA;EACE,kBAAkB;EAClB,yBAAyB;AAC3B;;AAEA;EACE,kBAAkB;EAClB,WAAW;AACb","sourcesContent":[":host {\n  display: block;\n}\n\n.tabs-switch {\n  display: flex;\n  gap: 5px;\n  padding: 0;\n  margin: 0;\n  list-style-type: none;\n}\n\n.tabs-switch__item {\n  padding: 5px 10px;\n  border: 1px solid #57595d;\n  background-color: #617aa0;\n  color: white;\n  cursor: pointer;\n  transition: background-color 0.15s ease-in-out;\n}\n\n.tabs-switch__item:hover {\n  background-color: #4a5e7c;\n}\n\n.tabs-switch__item.is-active {\n  background-color: #303d51;\n}\n\n.tabs-switch__close {\n  padding: 0;\n  margin: 0 0 0 10px;\n  border: none;\n  background-color: transparent;\n}\n\n.tabs-switch__close:hover {\n  color: #8ba5d0;\n}\n\n.tabs-switch__close:active {\n  color: #7288ac;\n}\n\n.tabs-preview {\n  padding: 20px 15px;\n  border: 1px solid #57595d;\n}\n\n.placeholder-text {\n  text-align: center;\n  color: #ccc;\n}\n"],"sourceRoot":""}]);
 // Exports
 module.exports = ___CSS_LOADER_EXPORT___.toString();
 
@@ -1048,50 +1055,6 @@ module.exports = ___CSS_LOADER_EXPORT___.toString();
 
 "use strict";
 module.exports = "<router-outlet></router-outlet>\n";
-
-/***/ }),
-
-/***/ 9283:
-/*!************************************************************************************************************************!*\
-  !*** ./src/app/components/current-conditions/components/current-condition/current-condition.component.html?ngResource ***!
-  \************************************************************************************************************************/
-/***/ ((module) => {
-
-"use strict";
-module.exports = "<div class=\"well flex\">\n  <div>\n    <h3>{{ location().data.name }} ({{ location().zip }})</h3>\n    <h4>Current conditions: {{ location().data.weather[0].main }}</h4>\n    <h4>Temperatures today:</h4>\n    <p>\n      Current {{ location().data.main.temp | number: '.0-0' }} - Max\n      {{ location().data.main.temp_max | number: '.0-0' }} - Min {{ location().data.main.temp_min | number: '.0-0' }}\n    </p>\n    <p>\n      <a [routerLink]=\"['/forecast', location().zip]\">Show 5-day forecast for {{ location().data.name }}</a>\n    </p>\n  </div>\n  <div>\n    @if (canSelfRemove()) {\n      <span\n        class=\"close\"\n        (click)=\"remove.emit(location().zip)\"\n        >&times;</span\n      >\n    }\n    <img\n      [src]=\"location().iconUrl\"\n      alt=\"Condition icon\"\n    />\n  </div>\n</div>\n";
-
-/***/ }),
-
-/***/ 8869:
-/*!********************************************************************************************!*\
-  !*** ./src/app/components/current-conditions/current-conditions.component.html?ngResource ***!
-  \********************************************************************************************/
-/***/ ((module) => {
-
-"use strict";
-module.exports = "<tabs-component [data]=\"conditions()\">\n  <ng-template\n    #tab\n    let-location\n  >\n    {{ location.data.name + '&nbsp;(' + location.zip + ')' }}\n  </ng-template>\n  <ng-template\n    #tabContent\n    let-data\n  >\n    <current-condition\n      [location]=\"data\"\n      [canSelfRemove]=\"false\"\n      #tabContentItem\n    />\n  </ng-template>\n</tabs-component>\n";
-
-/***/ }),
-
-/***/ 5965:
-/*!****************************************************************!*\
-  !*** ./src/app/components/tabs/tabs.component.html?ngResource ***!
-  \****************************************************************/
-/***/ ((module) => {
-
-"use strict";
-module.exports = "<div class=\"tabs\">\n  @if (data().length) {\n    <ul class=\"tabs-switch\">\n      @for (item of data(); track $index) {\n        <li\n          class=\"tabs-switch__item\"\n          [ngClass]=\"{ 'is-active': state().activeIndex === $index }\"\n          (click)=\"onSetActiveIndex($index)\"\n        >\n          <ng-container\n            [ngTemplateOutlet]=\"tabTmpl()\"\n            [ngTemplateOutletContext]=\"{ $implicit: item }\"\n          />\n          <button\n            class=\"tabs-switch__close\"\n            (click)=\"onRemoveIndex($event, $index)\"\n          >\n            X\n          </button>\n        </li>\n      }\n    </ul>\n    <div class=\"tabs-preview\">\n      @for (item of data(); track $index) {\n        <div [hidden]=\"state().activeIndex !== $index\">\n          <ng-container\n            [ngTemplateOutlet]=\"tabContentTmpl()\"\n            [ngTemplateOutletContext]=\"{ $implicit: item }\"\n          />\n        </div>\n      }\n    </div>\n  } @else {\n    <p class=\"placeholder-text\">Please enter the zipcode in the form to see the weather conditions</p>\n  }\n</div>\n";
-
-/***/ }),
-
-/***/ 2851:
-/*!**********************************************************************************!*\
-  !*** ./src/app/components/zipcode-entry/zipcode-entry.component.html?ngResource ***!
-  \**********************************************************************************/
-/***/ ((module) => {
-
-"use strict";
-module.exports = "<div class=\"well\">\n  <h2>Enter a zipcode (US only):</h2>\n  <input\n    type=\"text\"\n    #zipcode\n    placeholder=\"Zipcode\"\n    class=\"form-control\"\n  />\n  <br />\n  <button\n    class=\"btn btn-primary\"\n    (click)=\"addLocation.emit(zipcode.value)\"\n  >\n    Add location\n  </button>\n</div>\n";
 
 /***/ }),
 
@@ -1114,6 +1077,50 @@ module.exports = "<div class=\"panel panel-default\">\n  @if (forecast$ | async;
 
 "use strict";
 module.exports = "<div class=\"container-fluid\">\n  @if (state().error) {\n    <div class=\"error\">\n      <p class=\"error__icon\">⚠️</p>\n      <p class=\"error__text\">{{ state().error.message ?? 'Data not Found' }}</p>\n    </div>\n  }\n  <app-zipcode-entry (addLocation)=\"onAddLocation($event)\" />\n  <app-current-conditions [conditions]=\"currentConditions()\" />\n</div>\n";
+
+/***/ }),
+
+/***/ 4279:
+/*!*******************************************************************************************************************************!*\
+  !*** ./src/app/shared/components/current-conditions/components/current-condition/current-condition.component.html?ngResource ***!
+  \*******************************************************************************************************************************/
+/***/ ((module) => {
+
+"use strict";
+module.exports = "<div class=\"well flex\">\n  <div>\n    <h3>{{ location().data.name }} ({{ location().zip }})</h3>\n    <h4>Current conditions: {{ location().data.weather[0].main }}</h4>\n    <h4>Temperatures today:</h4>\n    <p>\n      Current {{ location().data.main.temp | number: '.0-0' }} - Max\n      {{ location().data.main.temp_max | number: '.0-0' }} - Min {{ location().data.main.temp_min | number: '.0-0' }}\n    </p>\n    <p>\n      <a [routerLink]=\"['/forecast', location().zip]\">Show 5-day forecast for {{ location().data.name }}</a>\n    </p>\n  </div>\n  <div>\n    @if (canSelfRemove()) {\n      <span\n        class=\"close\"\n        (click)=\"remove.emit(location().zip)\"\n        >&times;</span\n      >\n    }\n    <img\n      [src]=\"location().iconUrl\"\n      alt=\"Condition icon\"\n    />\n  </div>\n</div>\n";
+
+/***/ }),
+
+/***/ 5481:
+/*!***************************************************************************************************!*\
+  !*** ./src/app/shared/components/current-conditions/current-conditions.component.html?ngResource ***!
+  \***************************************************************************************************/
+/***/ ((module) => {
+
+"use strict";
+module.exports = "<tabs-component [data]=\"conditions()\">\n  <ng-template\n    #tab\n    let-location\n  >\n    {{ location.data.name + '&nbsp;(' + location.zip + ')' }}\n  </ng-template>\n  <ng-template\n    #tabContent\n    let-data\n  >\n    <current-condition\n      [location]=\"data\"\n      [canSelfRemove]=\"false\"\n      #tabContentItem\n    />\n  </ng-template>\n</tabs-component>\n";
+
+/***/ }),
+
+/***/ 3377:
+/*!***********************************************************************!*\
+  !*** ./src/app/shared/components/tabs/tabs.component.html?ngResource ***!
+  \***********************************************************************/
+/***/ ((module) => {
+
+"use strict";
+module.exports = "<div class=\"tabs\">\n  @if (data().length) {\n    <ul class=\"tabs-switch\">\n      @for (item of data(); track $index) {\n        <li\n          class=\"tabs-switch__item\"\n          [ngClass]=\"{ 'is-active': state().activeIndex === $index }\"\n          (click)=\"onSetActiveIndex($index)\"\n        >\n          <ng-container\n            [ngTemplateOutlet]=\"tabTmpl()\"\n            [ngTemplateOutletContext]=\"{ $implicit: item }\"\n          />\n          <button\n            class=\"tabs-switch__close\"\n            (click)=\"onRemoveIndex($event, $index)\"\n          >\n            X\n          </button>\n        </li>\n      }\n    </ul>\n    <div class=\"tabs-preview\">\n      @for (item of data(); track $index) {\n        <div [hidden]=\"state().activeIndex !== $index\">\n          <ng-container\n            [ngTemplateOutlet]=\"tabContentTmpl()\"\n            [ngTemplateOutletContext]=\"{ $implicit: item }\"\n          />\n        </div>\n      }\n    </div>\n  } @else {\n    <p class=\"placeholder-text\">Please enter the zipcode in the form to see the weather conditions</p>\n  }\n</div>\n";
+
+/***/ }),
+
+/***/ 3671:
+/*!*****************************************************************************************!*\
+  !*** ./src/app/shared/components/zipcode-entry/zipcode-entry.component.html?ngResource ***!
+  \*****************************************************************************************/
+/***/ ((module) => {
+
+"use strict";
+module.exports = "<div class=\"well\">\n  <h2>Enter a zipcode (US only):</h2>\n  <input\n    type=\"text\"\n    #zipcode\n    placeholder=\"Zipcode\"\n    class=\"form-control\"\n  />\n  <br />\n  <button\n    class=\"btn btn-primary\"\n    (click)=\"addLocation.emit(zipcode.value)\"\n  >\n    Add location\n  </button>\n</div>\n";
 
 /***/ })
 
