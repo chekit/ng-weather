@@ -273,6 +273,26 @@ MainPageComponent = __decorate([(0,_angular_core__WEBPACK_IMPORTED_MODULE_4__.Co
 
 /***/ }),
 
+/***/ 5702:
+/*!***************************************************!*\
+  !*** ./src/app/services/browser-stotage.token.ts ***!
+  \***************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   BROWSER_STORAGE: () => (/* binding */ BROWSER_STORAGE)
+/* harmony export */ });
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ 7580);
+
+const BROWSER_STORAGE = new _angular_core__WEBPACK_IMPORTED_MODULE_0__.InjectionToken('Browser Storage', {
+  providedIn: 'root',
+  factory: () => localStorage
+});
+
+/***/ }),
+
 /***/ 400:
 /*!***********************************************!*\
   !*** ./src/app/services/cache.interceptor.ts ***!
@@ -284,10 +304,11 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   CacheInterceptor: () => (/* binding */ CacheInterceptor)
 /* harmony export */ });
-/* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/common/http */ 6443);
-/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/core */ 7580);
-/* harmony import */ var rxjs__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! rxjs */ 1536);
-/* harmony import */ var rxjs_operators__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! rxjs/operators */ 6000);
+/* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/common/http */ 6443);
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @angular/core */ 7580);
+/* harmony import */ var rxjs__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! rxjs */ 1536);
+/* harmony import */ var rxjs_operators__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! rxjs/operators */ 6000);
+/* harmony import */ var _browser_stotage_token__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./browser-stotage.token */ 5702);
 var __decorate = undefined && undefined.__decorate || function (decorators, target, key, desc) {
   var c = arguments.length,
     r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc,
@@ -299,18 +320,19 @@ var __decorate = undefined && undefined.__decorate || function (decorators, targ
 
 
 
+
 let CacheInterceptor = class CacheInterceptor {
-  constructor(global) {
-    this.global = global;
+  constructor(storage) {
+    this.storage = storage;
     this.cache = new Map();
-    const cached = JSON.parse(global.localStorage.getItem('cache'));
+    const cached = JSON.parse(storage.getItem('cache'));
     if (cached) {
       this.cache = new Map(cached);
     }
   }
   updateCache(key, data) {
     this.cache.set(key, data);
-    this.global.localStorage.setItem('cache', JSON.stringify(Array.from(this.cache)));
+    this.storage.setItem('cache', JSON.stringify(Array.from(this.cache)));
   }
   readCache(key) {
     return this.cache.get(key);
@@ -318,11 +340,11 @@ let CacheInterceptor = class CacheInterceptor {
   intercept(req, next) {
     if (!this.isCacheable(req)) return next.handle(req);
     const cachedResponse = this.cache.get(req.url);
-    return cachedResponse ? (0,rxjs__WEBPACK_IMPORTED_MODULE_0__.of)(cachedResponse) : this.sendRequest(req, next);
+    return cachedResponse ? (0,rxjs__WEBPACK_IMPORTED_MODULE_1__.of)(cachedResponse) : this.sendRequest(req, next);
   }
   sendRequest(req, next) {
-    return next.handle(req).pipe((0,rxjs_operators__WEBPACK_IMPORTED_MODULE_1__.tap)(event => {
-      if (event instanceof _angular_common_http__WEBPACK_IMPORTED_MODULE_2__.HttpResponse) {
+    return next.handle(req).pipe((0,rxjs_operators__WEBPACK_IMPORTED_MODULE_2__.tap)(event => {
+      if (event instanceof _angular_common_http__WEBPACK_IMPORTED_MODULE_3__.HttpResponse) {
         this.updateCache(req.url, event);
       }
     }));
@@ -332,15 +354,15 @@ let CacheInterceptor = class CacheInterceptor {
   }
   static {
     this.ctorParameters = () => [{
-      type: Window,
+      type: Storage,
       decorators: [{
-        type: _angular_core__WEBPACK_IMPORTED_MODULE_3__.Inject,
-        args: ['Window']
+        type: _angular_core__WEBPACK_IMPORTED_MODULE_4__.Inject,
+        args: [_browser_stotage_token__WEBPACK_IMPORTED_MODULE_0__.BROWSER_STORAGE]
       }]
     }];
   }
 };
-CacheInterceptor = __decorate([(0,_angular_core__WEBPACK_IMPORTED_MODULE_3__.Injectable)({
+CacheInterceptor = __decorate([(0,_angular_core__WEBPACK_IMPORTED_MODULE_4__.Injectable)({
   providedIn: 'root'
 })], CacheInterceptor);
 
@@ -379,7 +401,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   LOCATIONS: () => (/* binding */ LOCATIONS),
 /* harmony export */   LocationService: () => (/* binding */ LocationService)
 /* harmony export */ });
-/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ 7580);
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ 7580);
+/* harmony import */ var _browser_stotage_token__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./browser-stotage.token */ 5702);
 var __decorate = undefined && undefined.__decorate || function (decorators, target, key, desc) {
   var c = arguments.length,
     r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc,
@@ -388,11 +411,13 @@ var __decorate = undefined && undefined.__decorate || function (decorators, targ
   return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
 
+
 const LOCATIONS = 'locations';
 let LocationService = class LocationService {
-  constructor() {
-    this.$locations = (0,_angular_core__WEBPACK_IMPORTED_MODULE_0__.signal)([]);
-    let locString = localStorage.getItem(LOCATIONS);
+  constructor(storage) {
+    this.storage = storage;
+    this.$locations = (0,_angular_core__WEBPACK_IMPORTED_MODULE_1__.signal)([]);
+    let locString = storage.getItem(LOCATIONS);
     if (locString) {
       this.$locations.set(JSON.parse(locString));
     }
@@ -402,7 +427,7 @@ let LocationService = class LocationService {
   }
   addLocation(zipcode) {
     this.$locations.update(codes => [...codes, zipcode]);
-    localStorage.setItem(LOCATIONS, JSON.stringify(this.$locations()));
+    this.storage.setItem(LOCATIONS, JSON.stringify(this.$locations()));
   }
   removeLocation(zipcode) {
     let index = this.$locations().indexOf(zipcode);
@@ -412,14 +437,20 @@ let LocationService = class LocationService {
         copy.splice(index, 1);
         return copy;
       });
-      localStorage.setItem(LOCATIONS, JSON.stringify(this.$locations()));
+      this.storage.setItem(LOCATIONS, JSON.stringify(this.$locations()));
     }
   }
   static {
-    this.ctorParameters = () => [];
+    this.ctorParameters = () => [{
+      type: Storage,
+      decorators: [{
+        type: _angular_core__WEBPACK_IMPORTED_MODULE_1__.Inject,
+        args: [_browser_stotage_token__WEBPACK_IMPORTED_MODULE_0__.BROWSER_STORAGE]
+      }]
+    }];
   }
 };
-LocationService = __decorate([(0,_angular_core__WEBPACK_IMPORTED_MODULE_0__.Injectable)({
+LocationService = __decorate([(0,_angular_core__WEBPACK_IMPORTED_MODULE_1__.Injectable)({
   providedIn: 'root'
 })], LocationService);
 
