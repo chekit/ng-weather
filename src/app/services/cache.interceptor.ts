@@ -4,9 +4,11 @@ import { Observable, of } from 'rxjs';
 import { tap } from 'rxjs/operators';
 import { BROWSER_STORAGE } from './browser-stotage.token';
 
+const REFRESH_TIMEOUT = 10000;
+
 @Injectable()
 export class CacheInterceptor<T> implements HttpInterceptor {
-  private cache = new Map<string, T>();
+  private cache = new Map<string, { resp: T; cached: number }>();
 
   constructor(@Inject(BROWSER_STORAGE) private storage: Storage) {
     this.initLocalCache();
@@ -17,7 +19,13 @@ export class CacheInterceptor<T> implements HttpInterceptor {
 
     const cachedResponse = this.cache.get(req.url);
 
-    return cachedResponse ? of(new HttpResponse({ body: cachedResponse })) : this.sendRequest(req, next);
+    if (cachedResponse) {
+      const isReadyToUpdate = Date.now() - cachedResponse.cached > REFRESH_TIMEOUT;
+
+      return isReadyToUpdate ? this.sendRequest(req, next) : of(new HttpResponse({ body: cachedResponse.resp }));
+    }
+
+    return this.sendRequest(req, next);
   }
 
   private sendRequest(req: HttpRequest<any>, next: HttpHandler) {
@@ -31,7 +39,7 @@ export class CacheInterceptor<T> implements HttpInterceptor {
   }
 
   private updateCache(key: string, data: T) {
-    this.cache.set(key, data);
+    this.cache.set(key, { resp: data, cached: Date.now() });
     this.storage.setItem('cache', JSON.stringify(Array.from(this.cache)));
   }
 
