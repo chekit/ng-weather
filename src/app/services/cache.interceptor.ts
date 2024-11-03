@@ -1,5 +1,5 @@
 import { HttpHandler, HttpInterceptor, HttpRequest, HttpResponse } from '@angular/common/http';
-import { Inject, Injectable } from '@angular/core';
+import { inject, Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import { tap } from 'rxjs/operators';
 import { BROWSER_STORAGE } from './browser-stotage.token';
@@ -12,10 +12,10 @@ const DEFAULT_REFRESH_TIMEOUT = 2 * 60 * 60 * 1000;
 export class CacheInterceptor<T> implements HttpInterceptor {
   private cache = new Map<string, { resp: T; cachedAt: number }>();
 
-  constructor(
-    @Inject(BROWSER_STORAGE) private storage: Storage,
-    @Inject(WINDOW) private global: Window & { ref_timeout?: number }
-  ) {
+  private storage = inject(BROWSER_STORAGE);
+  private global = inject(WINDOW);
+
+  constructor() {
     this.initLocalCache();
   }
 
