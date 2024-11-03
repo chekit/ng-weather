@@ -314,6 +314,7 @@ var __decorate = undefined && undefined.__decorate || function (decorators, targ
 
 
 
+const REFRESH_TIMEOUT = 10000;
 let CacheInterceptor = class CacheInterceptor {
   constructor(storage) {
     this.storage = storage;
@@ -323,9 +324,13 @@ let CacheInterceptor = class CacheInterceptor {
   intercept(req, next) {
     if (!this.isCacheable(req)) return next.handle(req);
     const cachedResponse = this.cache.get(req.url);
-    return cachedResponse ? (0,rxjs__WEBPACK_IMPORTED_MODULE_1__.of)(new _angular_common_http__WEBPACK_IMPORTED_MODULE_2__.HttpResponse({
-      body: cachedResponse
-    })) : this.sendRequest(req, next);
+    if (cachedResponse) {
+      const isReadyToUpdate = Date.now() - cachedResponse.cached > REFRESH_TIMEOUT;
+      return isReadyToUpdate ? this.sendRequest(req, next) : (0,rxjs__WEBPACK_IMPORTED_MODULE_1__.of)(new _angular_common_http__WEBPACK_IMPORTED_MODULE_2__.HttpResponse({
+        body: cachedResponse.resp
+      }));
+    }
+    return this.sendRequest(req, next);
   }
   sendRequest(req, next) {
     return next.handle(req).pipe((0,rxjs_operators__WEBPACK_IMPORTED_MODULE_3__.tap)(event => {
@@ -335,7 +340,10 @@ let CacheInterceptor = class CacheInterceptor {
     }));
   }
   updateCache(key, data) {
-    this.cache.set(key, data);
+    this.cache.set(key, {
+      resp: data,
+      cached: Date.now()
+    });
     this.storage.setItem('cache', JSON.stringify(Array.from(this.cache)));
   }
   isCacheable(req) {
