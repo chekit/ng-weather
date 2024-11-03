@@ -15,6 +15,16 @@
   border: 1px solid #57595d;
   background-color: #617aa0;
   color: white;
+  cursor: pointer;
+  transition: background-color 0.15s ease-in-out;
+}
+
+.tabs-switch__item:hover {
+  background-color: #4a5e7c;
+}
+
+.tabs-switch__item.is-active {
+  background-color: #303d51;
 }
 
 .tabs-switch__close {
@@ -22,6 +32,14 @@
   margin: 0 0 0 10px;
   border: none;
   background-color: transparent;
+}
+
+.tabs-switch__close:hover {
+  color: #8ba5d0;
+}
+
+.tabs-switch__close:active {
+  color: #7288ac;
 }
 
 .tabs-preview {

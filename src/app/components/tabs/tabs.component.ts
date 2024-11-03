@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, contentChild, effect, input, TemplateRef } from '@angular/core';
+import { Component, contentChild, effect, input, signal, TemplateRef } from '@angular/core';
 
 @Component({
   selector: 'tabs-component',
@@ -11,13 +11,32 @@ import { Component, contentChild, effect, input, TemplateRef } from '@angular/co
 export class TabsComponent {
   data = input<any>([]);
 
+  private state = signal<{ activeIndex: number }>({ activeIndex: 0 });
+
   tabContentTmpl = contentChild.required('tabContent', {
+    read: TemplateRef,
+  });
+  tabTmpl = contentChild.required('tab', {
     read: TemplateRef,
   });
 
   constructor() {
     effect(() => {
-      console.log(this.tabContentTmpl);
+      this.data();
     });
+  }
+
+  onSetActiveIndex(index: number) {
+    if (this.state().activeIndex === index) return;
+
+    this.state.update(state => ({ ...state, activeIndex: index }));
+  }
+
+  onRemoveIndex(event: Event, index: number) {
+    event.stopPropagation();
+
+    if (index === this.state().activeIndex) {
+      this.state.update(state => ({ ...state, activeIndex: index - 1 > 0 ? index - 1 : 0 }));
+    }
   }
 }

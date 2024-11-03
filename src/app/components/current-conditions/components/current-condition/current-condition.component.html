@@ -11,15 +11,17 @@
       <a [routerLink]="['/forecast', location().zip]">Show 5-day forecast for {{ location().data.name }}</a>
     </p>
   </div>
-  <div>
-    <span
-      class="close"
-      (click)="remove.emit(location().zip)"
-      >&times;</span
-    >
-    <img
-      [src]="location().iconUrl"
-      alt="Condition icon"
-    />
-  </div>
+  @if (selfRemove()) {
+    <div>
+      <span
+        class="close"
+        (click)="remove.emit(location().zip)"
+        >&times;</span
+      >
+      <img
+        [src]="location().iconUrl"
+        alt="Condition icon"
+      />
+    </div>
+  }
 </div>

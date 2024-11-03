@@ -7,13 +7,19 @@
 
   <tabs-component [data]="currentConditions()">
     <ng-template
+      #tab
+      let-title
+    >
+      {{ title }}
+    </ng-template>
+    <ng-template
       #tabContent
       let-data
     >
       <current-condition
         [location]="data"
+        [selfRemove]="false"
         (remove)="onRemoveCondition($event)"
-        #tabData
       />
     </ng-template>
   </tabs-component>

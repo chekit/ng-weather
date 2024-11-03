@@ -1,14 +1,32 @@
 <div class="tabs">
   <ul class="tabs-switch">
-    <li class="tabs-switch__item">tab (1) <button class="tabs-switch__close">X</button></li>
-    <li class="tabs-switch__item">tab (2) <button class="tabs-switch__close">X</button></li>
+    @for (item of data(); track $index) {
+      <li
+        class="tabs-switch__item"
+        [ngClass]="{ 'is-active': state().activeIndex === $index }"
+        (click)="onSetActiveIndex($index)"
+      >
+        <ng-container
+          [ngTemplateOutlet]="tabTmpl()"
+          [ngTemplateOutletContext]="{ $implicit: item.data.name + '(' + item.zip + ')' }"
+        />
+        <button
+          class="tabs-switch__close"
+          (click)="onRemoveIndex($event, $index)"
+        >
+          X
+        </button>
+      </li>
+    }
   </ul>
   <div class="tabs-preview">
     @for (item of data(); track $index) {
-      <ng-container
-        [ngTemplateOutlet]="tabContentTmpl()"
-        [ngTemplateOutletContext]="{ $implicit: item }"
-      ></ng-container>
+      <div [hidden]="state().activeIndex !== $index">
+        <ng-container
+          [ngTemplateOutlet]="tabContentTmpl()"
+          [ngTemplateOutletContext]="{ $implicit: item }"
+        />
+      </div>
     }
   </div>
 </div>

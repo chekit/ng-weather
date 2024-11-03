@@ -11,5 +11,6 @@ import { RouterLink } from '@angular/router';
 })
 export class CurrentConditionComponent {
   location = input<any>();
+  selfRemove = input(true);
   remove = output<string>();
 }
