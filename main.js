@@ -12,10 +12,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   AppComponent: () => (/* binding */ AppComponent)
 /* harmony export */ });
 /* harmony import */ var _app_component_html_ngResource__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./app.component.html?ngResource */ 1584);
-/* harmony import */ var _app_component_css_ngResource__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./app.component.css?ngResource */ 309);
-/* harmony import */ var _app_component_css_ngResource__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_app_component_css_ngResource__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/core */ 7580);
-/* harmony import */ var _services__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./services */ 8379);
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/core */ 7580);
+/* harmony import */ var _services__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./services */ 8379);
 var __decorate = undefined && undefined.__decorate || function (decorators, target, key, desc) {
   var c = arguments.length,
     r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc,
@@ -26,11 +24,10 @@ var __decorate = undefined && undefined.__decorate || function (decorators, targ
 
 
 
-
 let AppComponent = class AppComponent {
   constructor() {
-    this.locatioService = (0,_angular_core__WEBPACK_IMPORTED_MODULE_3__.inject)(_services__WEBPACK_IMPORTED_MODULE_2__.LocationService);
-    this.weatherService = (0,_angular_core__WEBPACK_IMPORTED_MODULE_3__.inject)(_services__WEBPACK_IMPORTED_MODULE_2__.WeatherService);
+    this.locatioService = (0,_angular_core__WEBPACK_IMPORTED_MODULE_2__.inject)(_services__WEBPACK_IMPORTED_MODULE_1__.LocationService);
+    this.weatherService = (0,_angular_core__WEBPACK_IMPORTED_MODULE_2__.inject)(_services__WEBPACK_IMPORTED_MODULE_1__.WeatherService);
   }
   ngOnInit() {
     const locations = this.locatioService.locations();
@@ -39,10 +36,9 @@ let AppComponent = class AppComponent {
     }
   }
 };
-AppComponent = __decorate([(0,_angular_core__WEBPACK_IMPORTED_MODULE_3__.Component)({
+AppComponent = __decorate([(0,_angular_core__WEBPACK_IMPORTED_MODULE_2__.Component)({
   selector: 'app-root',
-  template: _app_component_html_ngResource__WEBPACK_IMPORTED_MODULE_0__,
-  styles: [(_app_component_css_ngResource__WEBPACK_IMPORTED_MODULE_1___default())]
+  template: _app_component_html_ngResource__WEBPACK_IMPORTED_MODULE_0__
 })], AppComponent);
 
 
@@ -69,7 +65,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _app_component__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./app.component */ 92);
 /* harmony import */ var _app_routing__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./app.routing */ 6009);
 /* harmony import */ var _pages__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./pages */ 3661);
-/* harmony import */ var _services_cache_interceptor__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./services/cache.interceptor */ 400);
+/* harmony import */ var _services__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./services */ 8379);
 var __decorate = undefined && undefined.__decorate || function (decorators, target, key, desc) {
   var c = arguments.length,
     r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc,
@@ -96,11 +92,8 @@ AppModule = __decorate([(0,_angular_core__WEBPACK_IMPORTED_MODULE_5__.NgModule)(
   }), _pages__WEBPACK_IMPORTED_MODULE_3__.MainPageComponent, _pages__WEBPACK_IMPORTED_MODULE_3__.ForecastsListComponent],
   providers: [{
     provide: _angular_common_http__WEBPACK_IMPORTED_MODULE_8__.HTTP_INTERCEPTORS,
-    useClass: _services_cache_interceptor__WEBPACK_IMPORTED_MODULE_4__.CacheInterceptor,
+    useClass: _services__WEBPACK_IMPORTED_MODULE_4__.CacheInterceptor,
     multi: true
-  }, {
-    provide: 'Window',
-    useValue: window
   }],
   bootstrap: [_app_component__WEBPACK_IMPORTED_MODULE_1__.AppComponent]
 })], AppModule);
@@ -304,10 +297,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   CacheInterceptor: () => (/* binding */ CacheInterceptor)
 /* harmony export */ });
-/* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/common/http */ 6443);
+/* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/common/http */ 6443);
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @angular/core */ 7580);
 /* harmony import */ var rxjs__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! rxjs */ 1536);
-/* harmony import */ var rxjs_operators__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! rxjs/operators */ 6000);
+/* harmony import */ var rxjs_operators__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! rxjs/operators */ 6000);
 /* harmony import */ var _browser_stotage_token__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./browser-stotage.token */ 5702);
 var __decorate = undefined && undefined.__decorate || function (decorators, target, key, desc) {
   var c = arguments.length,
@@ -325,32 +318,34 @@ let CacheInterceptor = class CacheInterceptor {
   constructor(storage) {
     this.storage = storage;
     this.cache = new Map();
-    const cached = JSON.parse(storage.getItem('cache'));
-    if (cached) {
-      this.cache = new Map(cached);
-    }
+    this.initLocalCache();
+  }
+  intercept(req, next) {
+    if (!this.isCacheable(req)) return next.handle(req);
+    const cachedResponse = this.cache.get(req.url);
+    return cachedResponse ? (0,rxjs__WEBPACK_IMPORTED_MODULE_1__.of)(new _angular_common_http__WEBPACK_IMPORTED_MODULE_2__.HttpResponse({
+      body: cachedResponse
+    })) : this.sendRequest(req, next);
+  }
+  sendRequest(req, next) {
+    return next.handle(req).pipe((0,rxjs_operators__WEBPACK_IMPORTED_MODULE_3__.tap)(event => {
+      if (event instanceof _angular_common_http__WEBPACK_IMPORTED_MODULE_2__.HttpResponse) {
+        this.updateCache(req.url, event.body);
+      }
+    }));
   }
   updateCache(key, data) {
     this.cache.set(key, data);
     this.storage.setItem('cache', JSON.stringify(Array.from(this.cache)));
   }
-  readCache(key) {
-    return this.cache.get(key);
-  }
-  intercept(req, next) {
-    if (!this.isCacheable(req)) return next.handle(req);
-    const cachedResponse = this.cache.get(req.url);
-    return cachedResponse ? (0,rxjs__WEBPACK_IMPORTED_MODULE_1__.of)(cachedResponse) : this.sendRequest(req, next);
-  }
-  sendRequest(req, next) {
-    return next.handle(req).pipe((0,rxjs_operators__WEBPACK_IMPORTED_MODULE_2__.tap)(event => {
-      if (event instanceof _angular_common_http__WEBPACK_IMPORTED_MODULE_3__.HttpResponse) {
-        this.updateCache(req.url, event);
-      }
-    }));
-  }
   isCacheable(req) {
     return req.method === 'GET';
+  }
+  initLocalCache() {
+    const cached = this.storage.getItem('cache');
+    if (cached) {
+      this.cache = new Map(JSON.parse(cached));
+    }
   }
   static {
     this.ctorParameters = () => [{
@@ -362,9 +357,7 @@ let CacheInterceptor = class CacheInterceptor {
     }];
   }
 };
-CacheInterceptor = __decorate([(0,_angular_core__WEBPACK_IMPORTED_MODULE_4__.Injectable)({
-  providedIn: 'root'
-})], CacheInterceptor);
+CacheInterceptor = __decorate([(0,_angular_core__WEBPACK_IMPORTED_MODULE_4__.Injectable)()], CacheInterceptor);
 
 
 /***/ }),
@@ -378,12 +371,18 @@ CacheInterceptor = __decorate([(0,_angular_core__WEBPACK_IMPORTED_MODULE_4__.Inj
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   LOCATIONS: () => (/* reexport safe */ _location_service__WEBPACK_IMPORTED_MODULE_0__.LOCATIONS),
-/* harmony export */   LocationService: () => (/* reexport safe */ _location_service__WEBPACK_IMPORTED_MODULE_0__.LocationService),
-/* harmony export */   WeatherService: () => (/* reexport safe */ _weather_service__WEBPACK_IMPORTED_MODULE_1__.WeatherService)
+/* harmony export */   BROWSER_STORAGE: () => (/* reexport safe */ _browser_stotage_token__WEBPACK_IMPORTED_MODULE_0__.BROWSER_STORAGE),
+/* harmony export */   CacheInterceptor: () => (/* reexport safe */ _cache_interceptor__WEBPACK_IMPORTED_MODULE_1__.CacheInterceptor),
+/* harmony export */   LOCATIONS: () => (/* reexport safe */ _location_service__WEBPACK_IMPORTED_MODULE_2__.LOCATIONS),
+/* harmony export */   LocationService: () => (/* reexport safe */ _location_service__WEBPACK_IMPORTED_MODULE_2__.LocationService),
+/* harmony export */   WeatherService: () => (/* reexport safe */ _weather_service__WEBPACK_IMPORTED_MODULE_3__.WeatherService)
 /* harmony export */ });
-/* harmony import */ var _location_service__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./location.service */ 1681);
-/* harmony import */ var _weather_service__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./weather.service */ 5858);
+/* harmony import */ var _browser_stotage_token__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./browser-stotage.token */ 5702);
+/* harmony import */ var _cache_interceptor__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./cache.interceptor */ 400);
+/* harmony import */ var _location_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./location.service */ 1681);
+/* harmony import */ var _weather_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./weather.service */ 5858);
+
+
 
 
 
@@ -470,7 +469,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ 7580);
 /* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/common/http */ 6443);
-/* harmony import */ var rxjs_operators__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! rxjs/operators */ 5443);
+/* harmony import */ var rxjs_operators__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! rxjs/operators */ 6000);
+/* harmony import */ var rxjs_operators__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! rxjs/operators */ 5443);
 var __decorate = undefined && undefined.__decorate || function (decorators, target, key, desc) {
   var c = arguments.length,
     r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc,
@@ -500,8 +500,9 @@ let WeatherService = class WeatherService {
     this.ICON_URL = 'https://raw.githubusercontent.com/udacity/Sunshine-Version-2/sunshine_master/app/src/main/res/drawable-hdpi/';
   }
   addCurrentConditions(zip) {
+    console.log(zip);
     // Here we make a request to get the current conditions data from the API. Note the use of backticks and an expression to insert the zipcode
-    return this.http.get(`${WeatherService_1.URL}/weather?zip=${zip},us&units=imperial&APPID=${WeatherService_1.APPID}`).pipe((0,rxjs_operators__WEBPACK_IMPORTED_MODULE_2__.map)(data => this.currentConditions.update(conditions => [...conditions, {
+    return this.http.get(`${WeatherService_1.URL}/weather?zip=${zip},us&units=imperial&APPID=${WeatherService_1.APPID}`).pipe((0,rxjs_operators__WEBPACK_IMPORTED_MODULE_2__.tap)(console.log), (0,rxjs_operators__WEBPACK_IMPORTED_MODULE_3__.map)(data => this.currentConditions.update(conditions => [...conditions, {
       zip,
       data,
       iconUrl: this.getWeatherIcon(data.weather[0].id)
@@ -947,24 +948,6 @@ if (_environments_environment__WEBPACK_IMPORTED_MODULE_1__.environment.productio
   (0,_angular_core__WEBPACK_IMPORTED_MODULE_2__.enableProdMode)();
 }
 (0,_angular_platform_browser_dynamic__WEBPACK_IMPORTED_MODULE_3__.platformBrowserDynamic)().bootstrapModule(_app_app_module__WEBPACK_IMPORTED_MODULE_0__.AppModule);
-
-/***/ }),
-
-/***/ 309:
-/*!**********************************************!*\
-  !*** ./src/app/app.component.css?ngResource ***!
-  \**********************************************/
-/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
-
-// Imports
-var ___CSS_LOADER_API_SOURCEMAP_IMPORT___ = __webpack_require__(/*! ../../node_modules/css-loader/dist/runtime/sourceMaps.js */ 3142);
-var ___CSS_LOADER_API_IMPORT___ = __webpack_require__(/*! ../../node_modules/css-loader/dist/runtime/api.js */ 5950);
-var ___CSS_LOADER_EXPORT___ = ___CSS_LOADER_API_IMPORT___(___CSS_LOADER_API_SOURCEMAP_IMPORT___);
-// Module
-___CSS_LOADER_EXPORT___.push([module.id, ``, "",{"version":3,"sources":[],"names":[],"mappings":"","sourceRoot":""}]);
-// Exports
-module.exports = ___CSS_LOADER_EXPORT___.toString();
-
 
 /***/ }),
 
