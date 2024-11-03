@@ -1,15 +1,12 @@
 import { HttpHandler, HttpInterceptor, HttpRequest, HttpResponse } from '@angular/common/http';
 import { Inject, Injectable } from '@angular/core';
-import { CurrentConditions, Forecast } from 'app/shared/models';
 import { Observable, of } from 'rxjs';
 import { tap } from 'rxjs/operators';
 import { BROWSER_STORAGE } from './browser-stotage.token';
 
-type responseType = CurrentConditions | Forecast;
-
 @Injectable()
-export class CacheInterceptor implements HttpInterceptor {
-  private cache = new Map<string, responseType>();
+export class CacheInterceptor<T> implements HttpInterceptor {
+  private cache = new Map<string, T>();
 
   constructor(@Inject(BROWSER_STORAGE) private storage: Storage) {
     this.initLocalCache();
@@ -33,7 +30,7 @@ export class CacheInterceptor implements HttpInterceptor {
     );
   }
 
-  private updateCache(key: string, data: responseType) {
+  private updateCache(key: string, data: T) {
     this.cache.set(key, data);
     this.storage.setItem('cache', JSON.stringify(Array.from(this.cache)));
   }

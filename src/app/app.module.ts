@@ -10,6 +10,9 @@ import { AppComponent } from './app.component';
 import { routing } from './app.routing';
 import { ForecastsListComponent, MainPageComponent } from './pages';
 import { CacheInterceptor } from './services';
+import { CurrentConditions, Forecast } from './shared/models';
+
+type responseType = CurrentConditions | Forecast;
 
 @NgModule({
   declarations: [AppComponent],
@@ -26,7 +29,7 @@ import { CacheInterceptor } from './services';
   providers: [
     {
       provide: HTTP_INTERCEPTORS,
-      useClass: CacheInterceptor,
+      useClass: CacheInterceptor<responseType>,
       multi: true,
     },
   ],
