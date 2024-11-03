@@ -4,7 +4,6 @@ import { LocationService, WeatherService } from './services';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css'],
 })
 export class AppComponent implements OnInit {
   private locatioService = inject(LocationService);

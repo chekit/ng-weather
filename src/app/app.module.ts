@@ -9,7 +9,7 @@ import { environment } from '../environments/environment';
 import { AppComponent } from './app.component';
 import { routing } from './app.routing';
 import { ForecastsListComponent, MainPageComponent } from './pages';
-import { CacheInterceptor } from './services/cache.interceptor';
+import { CacheInterceptor } from './services';
 
 @NgModule({
   declarations: [AppComponent],
@@ -29,7 +29,6 @@ import { CacheInterceptor } from './services/cache.interceptor';
       useClass: CacheInterceptor,
       multi: true,
     },
-    { provide: 'Window', useValue: window },
   ],
   bootstrap: [AppComponent],
 })

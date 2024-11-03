@@ -2,10 +2,8 @@ import { inject, Injectable, Signal, signal } from '@angular/core';
 import { Observable } from 'rxjs';
 
 import { HttpClient } from '@angular/common/http';
-import { map } from 'rxjs/operators';
-import { Forecast } from '../pages/forecasts-list/forecast.type';
-import { CurrentConditions } from '../shared/components/current-conditions/models/current-conditions.type';
-import { ConditionsAndZip } from '../shared/models/conditions-and-zip.type';
+import { map, tap } from 'rxjs/operators';
+import { ConditionsAndZip, CurrentConditions, Forecast } from '../shared/models';
 
 @Injectable({
   providedIn: 'root',
@@ -21,12 +19,14 @@ export class WeatherService {
   private http = inject(HttpClient);
 
   addCurrentConditions(zip: string): Observable<void> {
+    console.log(zip);
     // Here we make a request to get the current conditions data from the API. Note the use of backticks and an expression to insert the zipcode
     return this.http
       .get<CurrentConditions>(
         `${WeatherService.URL}/weather?zip=${zip},us&units=imperial&APPID=${WeatherService.APPID}`
       )
       .pipe(
+        tap(console.log),
         map(data =>
           this.currentConditions.update(conditions => [
             ...conditions,

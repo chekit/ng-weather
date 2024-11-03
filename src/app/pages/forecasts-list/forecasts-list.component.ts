@@ -4,7 +4,7 @@ import { ActivatedRoute, RouterLink } from '@angular/router';
 import { Observable } from 'rxjs';
 import { filter, map, switchMap } from 'rxjs/operators';
 import { WeatherService } from '../../services';
-import { Forecast } from './forecast.type';
+import { Forecast } from '../../shared/models';
 
 @Component({
   selector: 'app-forecasts-list',
