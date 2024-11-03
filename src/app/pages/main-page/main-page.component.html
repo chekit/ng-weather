@@ -1,26 +1,10 @@
 <div class="container-fluid">
+  @if (state().error) {
+    <div class="error">
+      <p class="error__icon">⚠️</p>
+      <p class="error__text">{{ state().error.message ?? 'Data not Found' }}</p>
+    </div>
+  }
   <app-zipcode-entry (addLocation)="onAddLocation($event)" />
-  <!-- <app-current-conditions
-    [conditions]="currentConditions()"
-    (removeCondition)="onRemoveCondition($event)"
-  /> -->
-
-  <tabs-component [data]="currentConditions()">
-    <ng-template
-      #tab
-      let-title
-    >
-      {{ title }}
-    </ng-template>
-    <ng-template
-      #tabContent
-      let-data
-    >
-      <current-condition
-        [location]="data"
-        [selfRemove]="false"
-        (remove)="onRemoveCondition($event)"
-      />
-    </ng-template>
-  </tabs-component>
+  <app-current-conditions [conditions]="currentConditions()" />
 </div>

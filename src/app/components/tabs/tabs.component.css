@@ -46,3 +46,8 @@
   padding: 20px 15px;
   border: 1px solid #57595d;
 }
+
+.placeholder-text {
+  text-align: center;
+  color: #ccc;
+}

@@ -14,7 +14,7 @@ export class AppComponent implements OnInit {
     const locations = this.locatioService.locations();
 
     for (const location of locations) {
-      this.weatherService.addCurrentConditions(location);
+      this.weatherService.addCurrentConditions(location).subscribe(() => console.info('🚀 Locations initialised'));
     }
   }
 }

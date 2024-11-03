@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
-import { ChangeDetectionStrategy, Component, input, output } from '@angular/core';
-import { RouterLink } from '@angular/router';
+import { ChangeDetectionStrategy, Component, input } from '@angular/core';
 import { ConditionsAndZip } from '../../conditions-and-zip.type';
+import { TabsComponent } from '../tabs/tabs.component';
 import { CurrentConditionComponent } from './components/current-condition/current-condition.component';
 
 @Component({
@@ -9,10 +9,9 @@ import { CurrentConditionComponent } from './components/current-condition/curren
   templateUrl: './current-conditions.component.html',
   styleUrls: ['./current-conditions.component.css'],
   changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [CommonModule, RouterLink, CurrentConditionComponent],
+  imports: [CommonModule, CurrentConditionComponent, TabsComponent],
   standalone: true,
 })
 export class CurrentConditionsComponent {
   conditions = input<ConditionsAndZip[]>([]);
-  removeCondition = output<string>();
 }

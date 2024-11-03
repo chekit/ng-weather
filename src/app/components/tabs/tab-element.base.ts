@@ -1,4 +1,6 @@
 import { Directive } from '@angular/core';
 
 @Directive()
-export class TabElement {}
+export abstract class TabElementBase {
+  abstract remove(): void;
+}

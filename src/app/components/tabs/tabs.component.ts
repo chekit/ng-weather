@@ -1,5 +1,6 @@
 import { CommonModule } from '@angular/common';
-import { Component, contentChild, effect, input, signal, TemplateRef } from '@angular/core';
+import { Component, contentChild, contentChildren, effect, input, signal, TemplateRef } from '@angular/core';
+import { TabElementBase } from './tab-element.base';
 
 @Component({
   selector: 'tabs-component',
@@ -19,6 +20,7 @@ export class TabsComponent {
   tabTmpl = contentChild.required('tab', {
     read: TemplateRef,
   });
+  tabData = contentChildren<TabElementBase>('tabContentItem');
 
   constructor() {
     effect(() => {
@@ -35,8 +37,8 @@ export class TabsComponent {
   onRemoveIndex(event: Event, index: number) {
     event.stopPropagation();
 
-    if (index === this.state().activeIndex) {
-      this.state.update(state => ({ ...state, activeIndex: index - 1 > 0 ? index - 1 : 0 }));
-    }
+    this.tabData()[index].remove();
+
+    this.state.update(state => ({ ...state, activeIndex: index - 1 > 0 ? index - 1 : 0 }));
   }
 }

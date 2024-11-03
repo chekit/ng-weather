@@ -1,30 +1,30 @@
-import { Component, inject } from '@angular/core';
-import { ZipcodeEntryComponent } from 'app/components';
-import { CurrentConditionComponent } from 'app/components/current-conditions/components/current-condition/current-condition.component';
-import { TabsComponent } from 'app/components/tabs/tabs.component';
+import { Component, inject, signal } from '@angular/core';
+import { CurrentConditionsComponent, ZipcodeEntryComponent } from 'app/components';
 import { LocationService, WeatherService } from 'app/services';
 
 @Component({
   selector: 'app-main-page',
   templateUrl: './main-page.component.html',
-  imports: [ZipcodeEntryComponent, TabsComponent, CurrentConditionComponent],
+  styleUrl: './main-page.component.css',
+  imports: [ZipcodeEntryComponent, CurrentConditionsComponent],
   standalone: true,
 })
 export class MainPageComponent {
   protected locationService = inject(LocationService);
   private weatherService = inject(WeatherService);
 
+  protected state = signal<{ error: any }>({ error: null });
+
   currentConditions = this.weatherService.getCurrentConditions();
 
   onAddLocation(zipcode: string) {
-    if (!this.locationService.locations().includes(zipcode)) {
-      this.locationService.addLocation(zipcode);
-      this.weatherService.addCurrentConditions(zipcode);
-    }
-  }
+    this.state.update(state => ({ ...state, error: null }));
 
-  onRemoveCondition(zipcode: string) {
-    this.locationService.removeLocation(zipcode);
-    this.weatherService.removeCurrentConditions(zipcode);
+    if (!this.locationService.locations().includes(zipcode)) {
+      this.weatherService.addCurrentConditions(zipcode).subscribe({
+        next: () => this.locationService.addLocation(zipcode),
+        error: err => this.state.update(state => ({ ...state, error: err })),
+      });
+    }
   }
 }

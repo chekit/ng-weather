@@ -1,7 +1,18 @@
-@for (location of conditions(); track location.zip) {
-  <current-condition
-    [location]="location"
-    (click)="showForecast(location.zip)"
-    (remove)="removeCondition.emit(location.zip)"
-  />
-}
+<tabs-component [data]="conditions()">
+  <ng-template
+    #tab
+    let-location
+  >
+    {{ location.data.name + '&nbsp;(' + location.zip + ')' }}
+  </ng-template>
+  <ng-template
+    #tabContent
+    let-data
+  >
+    <current-condition
+      [location]="data"
+      [canSelfRemove]="false"
+      #tabContentItem
+    />
+  </ng-template>
+</tabs-component>
