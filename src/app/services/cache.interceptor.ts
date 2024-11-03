@@ -3,14 +3,19 @@ import { Inject, Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import { tap } from 'rxjs/operators';
 import { BROWSER_STORAGE } from './browser-stotage.token';
+import { WINDOW } from './window.token';
 
-const REFRESH_TIMEOUT = 10000;
+// Data gets cached for 2 hours
+const DEFAULT_REFRESH_TIMEOUT = 2 * 60 * 60 * 1000;
 
 @Injectable()
 export class CacheInterceptor<T> implements HttpInterceptor {
-  private cache = new Map<string, { resp: T; cached: number }>();
+  private cache = new Map<string, { resp: T; cachedAt: number }>();
 
-  constructor(@Inject(BROWSER_STORAGE) private storage: Storage) {
+  constructor(
+    @Inject(BROWSER_STORAGE) private storage: Storage,
+    @Inject(WINDOW) private global: Window & { ref_timeout?: number }
+  ) {
     this.initLocalCache();
   }
 
@@ -20,9 +25,9 @@ export class CacheInterceptor<T> implements HttpInterceptor {
     const cachedResponse = this.cache.get(req.url);
 
     if (cachedResponse) {
-      const isReadyToUpdate = Date.now() - cachedResponse.cached > REFRESH_TIMEOUT;
-
-      return isReadyToUpdate ? this.sendRequest(req, next) : of(new HttpResponse({ body: cachedResponse.resp }));
+      return this.isReadyToUpdate(cachedResponse.cachedAt)
+        ? this.sendRequest(req, next)
+        : of(new HttpResponse({ body: cachedResponse.resp }));
     }
 
     return this.sendRequest(req, next);
@@ -39,7 +44,7 @@ export class CacheInterceptor<T> implements HttpInterceptor {
   }
 
   private updateCache(key: string, data: T) {
-    this.cache.set(key, { resp: data, cached: Date.now() });
+    this.cache.set(key, { resp: data, cachedAt: Date.now() });
     this.storage.setItem('cache', JSON.stringify(Array.from(this.cache)));
   }
 
@@ -53,5 +58,13 @@ export class CacheInterceptor<T> implements HttpInterceptor {
     if (cached) {
       this.cache = new Map(JSON.parse(cached));
     }
+  }
+
+  private isReadyToUpdate(cachedAt: number): boolean {
+    if (!cachedAt) return true;
+
+    const timeout = this.global.ref_timeout ?? DEFAULT_REFRESH_TIMEOUT;
+
+    return Date.now() - cachedAt > timeout;
   }
 }
