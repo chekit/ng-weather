@@ -59,16 +59,17 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   AppModule: () => (/* binding */ AppModule)
 /* harmony export */ });
-/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @angular/core */ 7580);
-/* harmony import */ var _angular_forms__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @angular/forms */ 4456);
-/* harmony import */ var _angular_platform_browser__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @angular/platform-browser */ 436);
-/* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @angular/common/http */ 6443);
-/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @angular/router */ 5072);
-/* harmony import */ var _angular_service_worker__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! @angular/service-worker */ 6140);
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @angular/core */ 7580);
+/* harmony import */ var _angular_forms__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @angular/forms */ 4456);
+/* harmony import */ var _angular_platform_browser__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @angular/platform-browser */ 436);
+/* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @angular/common/http */ 6443);
+/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! @angular/router */ 5072);
+/* harmony import */ var _angular_service_worker__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! @angular/service-worker */ 6140);
 /* harmony import */ var _environments_environment__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../environments/environment */ 5312);
 /* harmony import */ var _app_component__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./app.component */ 92);
 /* harmony import */ var _app_routing__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./app.routing */ 6009);
 /* harmony import */ var _pages__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./pages */ 3661);
+/* harmony import */ var _services_cache_interceptor__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./services/cache.interceptor */ 400);
 var __decorate = undefined && undefined.__decorate || function (decorators, target, key, desc) {
   var c = arguments.length,
     r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc,
@@ -86,12 +87,21 @@ var __decorate = undefined && undefined.__decorate || function (decorators, targ
 
 
 
+
 let AppModule = class AppModule {};
-AppModule = __decorate([(0,_angular_core__WEBPACK_IMPORTED_MODULE_4__.NgModule)({
+AppModule = __decorate([(0,_angular_core__WEBPACK_IMPORTED_MODULE_5__.NgModule)({
   declarations: [_app_component__WEBPACK_IMPORTED_MODULE_1__.AppComponent],
-  imports: [_angular_platform_browser__WEBPACK_IMPORTED_MODULE_5__.BrowserModule, _angular_forms__WEBPACK_IMPORTED_MODULE_6__.FormsModule, _angular_common_http__WEBPACK_IMPORTED_MODULE_7__.HttpClientModule, _angular_router__WEBPACK_IMPORTED_MODULE_8__.RouterModule, _app_routing__WEBPACK_IMPORTED_MODULE_2__.routing, _angular_service_worker__WEBPACK_IMPORTED_MODULE_9__.ServiceWorkerModule.register('/ngsw-worker.js', {
+  imports: [_angular_platform_browser__WEBPACK_IMPORTED_MODULE_6__.BrowserModule, _angular_forms__WEBPACK_IMPORTED_MODULE_7__.FormsModule, _angular_common_http__WEBPACK_IMPORTED_MODULE_8__.HttpClientModule, _angular_router__WEBPACK_IMPORTED_MODULE_9__.RouterModule, _app_routing__WEBPACK_IMPORTED_MODULE_2__.routing, _angular_service_worker__WEBPACK_IMPORTED_MODULE_10__.ServiceWorkerModule.register('/ngsw-worker.js', {
     enabled: _environments_environment__WEBPACK_IMPORTED_MODULE_0__.environment.production
   }), _pages__WEBPACK_IMPORTED_MODULE_3__.MainPageComponent, _pages__WEBPACK_IMPORTED_MODULE_3__.ForecastsListComponent],
+  providers: [{
+    provide: _angular_common_http__WEBPACK_IMPORTED_MODULE_8__.HTTP_INTERCEPTORS,
+    useClass: _services_cache_interceptor__WEBPACK_IMPORTED_MODULE_4__.CacheInterceptor,
+    multi: true
+  }, {
+    provide: 'Window',
+    useValue: window
+  }],
   bootstrap: [_app_component__WEBPACK_IMPORTED_MODULE_1__.AppComponent]
 })], AppModule);
 
@@ -259,6 +269,80 @@ MainPageComponent = __decorate([(0,_angular_core__WEBPACK_IMPORTED_MODULE_4__.Co
   standalone: true,
   styles: [(_main_page_component_css_ngResource__WEBPACK_IMPORTED_MODULE_1___default())]
 })], MainPageComponent);
+
+
+/***/ }),
+
+/***/ 400:
+/*!***********************************************!*\
+  !*** ./src/app/services/cache.interceptor.ts ***!
+  \***********************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   CacheInterceptor: () => (/* binding */ CacheInterceptor)
+/* harmony export */ });
+/* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/common/http */ 6443);
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/core */ 7580);
+/* harmony import */ var rxjs__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! rxjs */ 1536);
+/* harmony import */ var rxjs_operators__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! rxjs/operators */ 6000);
+var __decorate = undefined && undefined.__decorate || function (decorators, target, key, desc) {
+  var c = arguments.length,
+    r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc,
+    d;
+  if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+  return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+
+
+
+
+let CacheInterceptor = class CacheInterceptor {
+  constructor(global) {
+    this.global = global;
+    this.cache = new Map();
+    const cached = JSON.parse(global.localStorage.getItem('cache'));
+    if (cached) {
+      this.cache = new Map(cached);
+    }
+  }
+  updateCache(key, data) {
+    this.cache.set(key, data);
+    this.global.localStorage.setItem('cache', JSON.stringify(Array.from(this.cache)));
+  }
+  readCache(key) {
+    return this.cache.get(key);
+  }
+  intercept(req, next) {
+    if (!this.isCacheable(req)) return next.handle(req);
+    const cachedResponse = this.cache.get(req.url);
+    return cachedResponse ? (0,rxjs__WEBPACK_IMPORTED_MODULE_0__.of)(cachedResponse) : this.sendRequest(req, next);
+  }
+  sendRequest(req, next) {
+    return next.handle(req).pipe((0,rxjs_operators__WEBPACK_IMPORTED_MODULE_1__.tap)(event => {
+      if (event instanceof _angular_common_http__WEBPACK_IMPORTED_MODULE_2__.HttpResponse) {
+        this.updateCache(req.url, event);
+      }
+    }));
+  }
+  isCacheable(req) {
+    return req.method === 'GET';
+  }
+  static {
+    this.ctorParameters = () => [{
+      type: Window,
+      decorators: [{
+        type: _angular_core__WEBPACK_IMPORTED_MODULE_3__.Inject,
+        args: ['Window']
+      }]
+    }];
+  }
+};
+CacheInterceptor = __decorate([(0,_angular_core__WEBPACK_IMPORTED_MODULE_3__.Injectable)({
+  providedIn: 'root'
+})], CacheInterceptor);
 
 
 /***/ }),
