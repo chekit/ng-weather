@@ -5,12 +5,15 @@
 .tabs-switch {
   display: flex;
   gap: 5px;
+  overflow-x: auto;
   padding: 0;
   margin: 0;
   list-style-type: none;
 }
 
 .tabs-switch__item {
+  display: flex;
+  align-items: center;
   padding: 5px 10px;
   border: 1px solid #57595d;
   background-color: #617aa0;

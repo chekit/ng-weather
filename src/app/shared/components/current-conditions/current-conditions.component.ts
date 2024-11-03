@@ -8,9 +8,9 @@ import { CurrentConditionComponent } from './components/current-condition/curren
   selector: 'app-current-conditions',
   templateUrl: './current-conditions.component.html',
   styleUrls: ['./current-conditions.component.css'],
-  changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [CommonModule, CurrentConditionComponent, TabsComponent],
   standalone: true,
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class CurrentConditionsComponent {
   conditions = input<ConditionsAndZip[]>([]);

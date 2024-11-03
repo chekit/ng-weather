@@ -1,5 +1,14 @@
 import { CommonModule } from '@angular/common';
-import { Component, contentChild, contentChildren, effect, input, signal, TemplateRef } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  contentChild,
+  contentChildren,
+  effect,
+  input,
+  signal,
+  TemplateRef,
+} from '@angular/core';
 import { TabElementBase } from './tab-element.base';
 
 @Component({
@@ -8,6 +17,7 @@ import { TabElementBase } from './tab-element.base';
   styleUrl: './tabs.component.css',
   imports: [CommonModule],
   standalone: true,
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class TabsComponent {
   data = input<any>([]);
