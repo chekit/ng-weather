@@ -159,6 +159,7 @@ var __decorate = undefined && undefined.__decorate || function (decorators, targ
 let CurrentConditionComponent = class CurrentConditionComponent {
   constructor() {
     this.location = (0,_angular_core__WEBPACK_IMPORTED_MODULE_2__.input)();
+    this.selfRemove = (0,_angular_core__WEBPACK_IMPORTED_MODULE_2__.input)(true);
     this.remove = (0,_angular_core__WEBPACK_IMPORTED_MODULE_2__.output)();
   }
   static {
@@ -168,6 +169,15 @@ let CurrentConditionComponent = class CurrentConditionComponent {
         args: [{
           isSignal: true,
           alias: "location",
+          required: false,
+          transform: undefined
+        }]
+      }],
+      selfRemove: [{
+        type: _angular_core__WEBPACK_IMPORTED_MODULE_2__.Input,
+        args: [{
+          isSignal: true,
+          alias: "selfRemove",
           required: false,
           transform: undefined
         }]
@@ -307,12 +317,34 @@ var __decorate = undefined && undefined.__decorate || function (decorators, targ
 let TabsComponent = class TabsComponent {
   constructor() {
     this.data = (0,_angular_core__WEBPACK_IMPORTED_MODULE_2__.input)([]);
+    this.state = (0,_angular_core__WEBPACK_IMPORTED_MODULE_2__.signal)({
+      activeIndex: 0
+    });
     this.tabContentTmpl = _angular_core__WEBPACK_IMPORTED_MODULE_2__.contentChild.required('tabContent', {
       read: _angular_core__WEBPACK_IMPORTED_MODULE_2__.TemplateRef
     });
-    (0,_angular_core__WEBPACK_IMPORTED_MODULE_2__.effect)(() => {
-      console.log(this.tabContentTmpl);
+    this.tabTmpl = _angular_core__WEBPACK_IMPORTED_MODULE_2__.contentChild.required('tab', {
+      read: _angular_core__WEBPACK_IMPORTED_MODULE_2__.TemplateRef
     });
+    (0,_angular_core__WEBPACK_IMPORTED_MODULE_2__.effect)(() => {
+      this.data();
+    });
+  }
+  onSetActiveIndex(index) {
+    if (this.state().activeIndex === index) return;
+    this.state.update(state => ({
+      ...state,
+      activeIndex: index
+    }));
+  }
+  onRemoveIndex(event, index) {
+    event.stopPropagation();
+    if (index === this.state().activeIndex) {
+      this.state.update(state => ({
+        ...state,
+        activeIndex: index - 1 > 0 ? index - 1 : 0
+      }));
+    }
   }
   static {
     this.ctorParameters = () => [];
@@ -331,6 +363,15 @@ let TabsComponent = class TabsComponent {
       tabContentTmpl: [{
         type: _angular_core__WEBPACK_IMPORTED_MODULE_2__.ContentChild,
         args: ['tabContent', {
+          ...{
+            read: _angular_core__WEBPACK_IMPORTED_MODULE_2__.TemplateRef
+          },
+          isSignal: true
+        }]
+      }],
+      tabTmpl: [{
+        type: _angular_core__WEBPACK_IMPORTED_MODULE_2__.ContentChild,
+        args: ['tab', {
           ...{
             read: _angular_core__WEBPACK_IMPORTED_MODULE_2__.TemplateRef
           },
@@ -846,6 +887,16 @@ ___CSS_LOADER_EXPORT___.push([module.id, `:host {
   border: 1px solid #57595d;
   background-color: #617aa0;
   color: white;
+  cursor: pointer;
+  transition: background-color 0.15s ease-in-out;
+}
+
+.tabs-switch__item:hover {
+  background-color: #4a5e7c;
+}
+
+.tabs-switch__item.is-active {
+  background-color: #303d51;
 }
 
 .tabs-switch__close {
@@ -855,11 +906,19 @@ ___CSS_LOADER_EXPORT___.push([module.id, `:host {
   background-color: transparent;
 }
 
+.tabs-switch__close:hover {
+  color: #8ba5d0;
+}
+
+.tabs-switch__close:active {
+  color: #7288ac;
+}
+
 .tabs-preview {
   padding: 20px 15px;
   border: 1px solid #57595d;
 }
-`, "",{"version":3,"sources":["webpack://./src/app/components/tabs/tabs.component.css"],"names":[],"mappings":"AAAA;EACE,cAAc;AAChB;;AAEA;EACE,aAAa;EACb,QAAQ;EACR,UAAU;EACV,SAAS;EACT,qBAAqB;AACvB;;AAEA;EACE,iBAAiB;EACjB,yBAAyB;EACzB,yBAAyB;EACzB,YAAY;AACd;;AAEA;EACE,UAAU;EACV,kBAAkB;EAClB,YAAY;EACZ,6BAA6B;AAC/B;;AAEA;EACE,kBAAkB;EAClB,yBAAyB;AAC3B","sourcesContent":[":host {\n  display: block;\n}\n\n.tabs-switch {\n  display: flex;\n  gap: 5px;\n  padding: 0;\n  margin: 0;\n  list-style-type: none;\n}\n\n.tabs-switch__item {\n  padding: 5px 10px;\n  border: 1px solid #57595d;\n  background-color: #617aa0;\n  color: white;\n}\n\n.tabs-switch__close {\n  padding: 0;\n  margin: 0 0 0 10px;\n  border: none;\n  background-color: transparent;\n}\n\n.tabs-preview {\n  padding: 20px 15px;\n  border: 1px solid #57595d;\n}\n"],"sourceRoot":""}]);
+`, "",{"version":3,"sources":["webpack://./src/app/components/tabs/tabs.component.css"],"names":[],"mappings":"AAAA;EACE,cAAc;AAChB;;AAEA;EACE,aAAa;EACb,QAAQ;EACR,UAAU;EACV,SAAS;EACT,qBAAqB;AACvB;;AAEA;EACE,iBAAiB;EACjB,yBAAyB;EACzB,yBAAyB;EACzB,YAAY;EACZ,eAAe;EACf,8CAA8C;AAChD;;AAEA;EACE,yBAAyB;AAC3B;;AAEA;EACE,yBAAyB;AAC3B;;AAEA;EACE,UAAU;EACV,kBAAkB;EAClB,YAAY;EACZ,6BAA6B;AAC/B;;AAEA;EACE,cAAc;AAChB;;AAEA;EACE,cAAc;AAChB;;AAEA;EACE,kBAAkB;EAClB,yBAAyB;AAC3B","sourcesContent":[":host {\n  display: block;\n}\n\n.tabs-switch {\n  display: flex;\n  gap: 5px;\n  padding: 0;\n  margin: 0;\n  list-style-type: none;\n}\n\n.tabs-switch__item {\n  padding: 5px 10px;\n  border: 1px solid #57595d;\n  background-color: #617aa0;\n  color: white;\n  cursor: pointer;\n  transition: background-color 0.15s ease-in-out;\n}\n\n.tabs-switch__item:hover {\n  background-color: #4a5e7c;\n}\n\n.tabs-switch__item.is-active {\n  background-color: #303d51;\n}\n\n.tabs-switch__close {\n  padding: 0;\n  margin: 0 0 0 10px;\n  border: none;\n  background-color: transparent;\n}\n\n.tabs-switch__close:hover {\n  color: #8ba5d0;\n}\n\n.tabs-switch__close:active {\n  color: #7288ac;\n}\n\n.tabs-preview {\n  padding: 20px 15px;\n  border: 1px solid #57595d;\n}\n"],"sourceRoot":""}]);
 // Exports
 module.exports = ___CSS_LOADER_EXPORT___.toString();
 
@@ -909,7 +968,7 @@ module.exports = "<router-outlet></router-outlet>\n";
 /***/ ((module) => {
 
 "use strict";
-module.exports = "<div class=\"well flex\">\n  <div>\n    <h3>{{ location().data.name }} ({{ location().zip }})</h3>\n    <h4>Current conditions: {{ location().data.weather[0].main }}</h4>\n    <h4>Temperatures today:</h4>\n    <p>\n      Current {{ location().data.main.temp | number: '.0-0' }} - Max\n      {{ location().data.main.temp_max | number: '.0-0' }} - Min {{ location().data.main.temp_min | number: '.0-0' }}\n    </p>\n    <p>\n      <a [routerLink]=\"['/forecast', location().zip]\">Show 5-day forecast for {{ location().data.name }}</a>\n    </p>\n  </div>\n  <div>\n    <span\n      class=\"close\"\n      (click)=\"remove.emit(location().zip)\"\n      >&times;</span\n    >\n    <img\n      [src]=\"location().iconUrl\"\n      alt=\"Condition icon\"\n    />\n  </div>\n</div>\n";
+module.exports = "<div class=\"well flex\">\n  <div>\n    <h3>{{ location().data.name }} ({{ location().zip }})</h3>\n    <h4>Current conditions: {{ location().data.weather[0].main }}</h4>\n    <h4>Temperatures today:</h4>\n    <p>\n      Current {{ location().data.main.temp | number: '.0-0' }} - Max\n      {{ location().data.main.temp_max | number: '.0-0' }} - Min {{ location().data.main.temp_min | number: '.0-0' }}\n    </p>\n    <p>\n      <a [routerLink]=\"['/forecast', location().zip]\">Show 5-day forecast for {{ location().data.name }}</a>\n    </p>\n  </div>\n  @if (selfRemove()) {\n    <div>\n      <span\n        class=\"close\"\n        (click)=\"remove.emit(location().zip)\"\n        >&times;</span\n      >\n      <img\n        [src]=\"location().iconUrl\"\n        alt=\"Condition icon\"\n      />\n    </div>\n  }\n</div>\n";
 
 /***/ }),
 
@@ -931,7 +990,7 @@ module.exports = "@for (location of conditions(); track location.zip) {\n  <curr
 /***/ ((module) => {
 
 "use strict";
-module.exports = "<div class=\"tabs\">\n  <ul class=\"tabs-switch\">\n    <li class=\"tabs-switch__item\">tab (1) <button class=\"tabs-switch__close\">X</button></li>\n    <li class=\"tabs-switch__item\">tab (2) <button class=\"tabs-switch__close\">X</button></li>\n  </ul>\n  <div class=\"tabs-preview\">\n    @for (item of data(); track $index) {\n      <ng-container\n        [ngTemplateOutlet]=\"tabContentTmpl()\"\n        [ngTemplateOutletContext]=\"{ $implicit: item }\"\n      ></ng-container>\n    }\n  </div>\n</div>\n";
+module.exports = "<div class=\"tabs\">\n  <ul class=\"tabs-switch\">\n    @for (item of data(); track $index) {\n      <li\n        class=\"tabs-switch__item\"\n        [ngClass]=\"{ 'is-active': state().activeIndex === $index }\"\n        (click)=\"onSetActiveIndex($index)\"\n      >\n        <ng-container\n          [ngTemplateOutlet]=\"tabTmpl()\"\n          [ngTemplateOutletContext]=\"{ $implicit: item.data.name + '(' + item.zip + ')' }\"\n        />\n        <button\n          class=\"tabs-switch__close\"\n          (click)=\"onRemoveIndex($event, $index)\"\n        >\n          X\n        </button>\n      </li>\n    }\n  </ul>\n  <div class=\"tabs-preview\">\n    @for (item of data(); track $index) {\n      <div [hidden]=\"state().activeIndex !== $index\">\n        <ng-container\n          [ngTemplateOutlet]=\"tabContentTmpl()\"\n          [ngTemplateOutletContext]=\"{ $implicit: item }\"\n        />\n      </div>\n    }\n  </div>\n</div>\n";
 
 /***/ }),
 
@@ -964,7 +1023,7 @@ module.exports = "<div class=\"panel panel-default\">\n  @if (forecast$ | async;
 /***/ ((module) => {
 
 "use strict";
-module.exports = "<div class=\"container-fluid\">\n  <app-zipcode-entry (addLocation)=\"onAddLocation($event)\" />\n  <!-- <app-current-conditions\n    [conditions]=\"currentConditions()\"\n    (removeCondition)=\"onRemoveCondition($event)\"\n  /> -->\n\n  <tabs-component [data]=\"currentConditions()\">\n    <ng-template\n      #tabContent\n      let-data\n    >\n      <current-condition\n        [location]=\"data\"\n        (remove)=\"onRemoveCondition($event)\"\n        #tabData\n      />\n    </ng-template>\n  </tabs-component>\n</div>\n";
+module.exports = "<div class=\"container-fluid\">\n  <app-zipcode-entry (addLocation)=\"onAddLocation($event)\" />\n  <!-- <app-current-conditions\n    [conditions]=\"currentConditions()\"\n    (removeCondition)=\"onRemoveCondition($event)\"\n  /> -->\n\n  <tabs-component [data]=\"currentConditions()\">\n    <ng-template\n      #tab\n      let-title\n    >\n      {{ title }}\n    </ng-template>\n    <ng-template\n      #tabContent\n      let-data\n    >\n      <current-condition\n        [location]=\"data\"\n        [selfRemove]=\"false\"\n        (remove)=\"onRemoveCondition($event)\"\n      />\n    </ng-template>\n  </tabs-component>\n</div>\n";
 
 /***/ })
 
