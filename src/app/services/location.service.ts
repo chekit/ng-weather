@@ -1,4 +1,5 @@
-import { Injectable, signal } from '@angular/core';
+import { Inject, Injectable, signal } from '@angular/core';
+import { BROWSER_STORAGE } from './browser-stotage.token';
 
 export const LOCATIONS: string = 'locations';
 
@@ -8,8 +9,8 @@ export const LOCATIONS: string = 'locations';
 export class LocationService {
   private $locations = signal<string[]>([]);
 
-  constructor() {
-    let locString = localStorage.getItem(LOCATIONS);
+  constructor(@Inject(BROWSER_STORAGE) private storage: Storage) {
+    let locString = storage.getItem(LOCATIONS);
 
     if (locString) {
       this.$locations.set(JSON.parse(locString));
@@ -22,7 +23,7 @@ export class LocationService {
 
   addLocation(zipcode: string) {
     this.$locations.update(codes => [...codes, zipcode]);
-    localStorage.setItem(LOCATIONS, JSON.stringify(this.$locations()));
+    this.storage.setItem(LOCATIONS, JSON.stringify(this.$locations()));
   }
 
   removeLocation(zipcode: string) {
@@ -33,7 +34,7 @@ export class LocationService {
         copy.splice(index, 1);
         return copy;
       });
-      localStorage.setItem(LOCATIONS, JSON.stringify(this.$locations()));
+      this.storage.setItem(LOCATIONS, JSON.stringify(this.$locations()));
     }
   }
 }

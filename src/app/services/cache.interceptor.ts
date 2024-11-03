@@ -1,7 +1,8 @@
 import { HttpHandler, HttpInterceptor, HttpRequest, HttpResponse } from '@angular/common/http';
-import { Inject, Injectable } from '@angular/core';
+import { Inject, Injectable, InjectionToken } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import { tap } from 'rxjs/operators';
+import { BROWSER_STORAGE } from './browser-stotage.token';
 
 @Injectable({
   providedIn: 'root',
@@ -9,8 +10,8 @@ import { tap } from 'rxjs/operators';
 export class CacheInterceptor implements HttpInterceptor {
   private cache = new Map<string, HttpResponse<any>>();
 
-  constructor(@Inject('Window') private global: Window) {
-    const cached = JSON.parse(global.localStorage.getItem('cache'));
+  constructor(@Inject(BROWSER_STORAGE) private storage: Storage) {
+    const cached = JSON.parse(storage.getItem('cache'));
 
     if (cached) {
       this.cache = new Map(cached);
@@ -19,7 +20,7 @@ export class CacheInterceptor implements HttpInterceptor {
 
   updateCache(key: string, data: HttpResponse<any>) {
     this.cache.set(key, data);
-    this.global.localStorage.setItem('cache', JSON.stringify(Array.from(this.cache)));
+    this.storage.setItem('cache', JSON.stringify(Array.from(this.cache)));
   }
 
   readCache(key: string): any | undefined {
