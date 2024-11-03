@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { ChangeDetectionStrategy, Component, input } from '@angular/core';
-import { ConditionsAndZip } from '../../conditions-and-zip.type';
+import { ConditionsAndZip } from '../../models/conditions-and-zip.type';
 import { TabsComponent } from '../tabs/tabs.component';
 import { CurrentConditionComponent } from './components/current-condition/current-condition.component';
 

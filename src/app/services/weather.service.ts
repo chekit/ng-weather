@@ -3,9 +3,9 @@ import { Observable } from 'rxjs';
 
 import { HttpClient } from '@angular/common/http';
 import { map } from 'rxjs/operators';
-import { CurrentConditions } from '../components/current-conditions/current-conditions.type';
-import { ConditionsAndZip } from '../conditions-and-zip.type';
 import { Forecast } from '../pages/forecasts-list/forecast.type';
+import { CurrentConditions } from '../shared/components/current-conditions/models/current-conditions.type';
+import { ConditionsAndZip } from '../shared/models/conditions-and-zip.type';
 
 @Injectable({
   providedIn: 'root',

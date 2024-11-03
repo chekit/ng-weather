@@ -1,6 +1,6 @@
 import { Component, inject, signal } from '@angular/core';
-import { CurrentConditionsComponent, ZipcodeEntryComponent } from 'app/components';
 import { LocationService, WeatherService } from 'app/services';
+import { CurrentConditionsComponent, ZipcodeEntryComponent } from 'app/shared/components';
 
 @Component({
   selector: 'app-main-page',

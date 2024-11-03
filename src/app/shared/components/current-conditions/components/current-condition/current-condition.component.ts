@@ -1,9 +1,9 @@
 import { CommonModule } from '@angular/common';
 import { ChangeDetectionStrategy, Component, inject, input } from '@angular/core';
 import { RouterLink } from '@angular/router';
-import { TabElementBase } from 'app/components/tabs/tab-element.base';
-import { ConditionsAndZip } from 'app/conditions-and-zip.type';
 import { LocationService, WeatherService } from 'app/services';
+import { TabElementBase } from 'app/shared/components/tabs/tab-element.base';
+import { ConditionsAndZip } from 'app/shared/models/conditions-and-zip.type';
 
 @Component({
   selector: 'current-condition',
