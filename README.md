@@ -22,13 +22,13 @@ The services are used independently in the [AppComponent](src/app/app.component.
 
 ## STEP #2
 
-The [`TabsComponent`](src/app/shared/components/tabs/tabs.component.ts) is implemented with the content projection in mind. It supports setting the tab switch and tab content via 2 templates, the content should implement/to be extended from the [`TabElementBase`](src/app/shared/components/tabs/tab-element.base.ts) class to provide the awaited interface for the tab switch to be closed.
+The [`TabsComponent`](src/app/shared/components/tabs/tabs.component.ts) is implemented with the content projection in mind. It supports setting the tab switch and tab content via 2 templates, the tab content should implement/to be extended from the [`TabElementBase`](src/app/shared/components/tabs/tab-element.base.ts) class to provide the awaited interface for closing the tab.
 
 ## STEP #3
 
-The cache system is implemented as a interceptor service [`CacheInterceptor`](src/app/services/cache.interceptor.ts). The class is generic and can be specified for various type of response data to be cached. For current app it used the [type](src/app/app.module.ts#L15) with responses from from `WeatherService`.
+The cache system is implemented as an interceptor service [`CacheInterceptor`](src/app/services/cache.interceptor.ts). The class is generic and can be specified for various type of response data to be cached. For the current app it uses the [type](src/app/app.module.ts#L15) with responses from `WeatherService`.
 
-To customise the cache update timeout for checking the result, you need to set up the window variable `ref_timeout` in the browser console. The value should be in milliseconds. For reference please check [`CacheInterceptor`](src/app/services/cache.interceptor.ts#L63)
+To customise the cache update timeout for checking the results, you need to set up the window variable `ref_timeout` in the browser console. The value should be in milliseconds. For reference please check [`CacheInterceptor`](src/app/services/cache.interceptor.ts#L63)
 
 ```javascript
 window.ref_timeout = 2000;
