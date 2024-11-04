@@ -9,7 +9,7 @@ import { WINDOW } from './window.token';
 const DEFAULT_REFRESH_TIMEOUT = 2 * 60 * 60 * 1000;
 
 @Injectable()
-export class CacheInterceptor<T> implements HttpInterceptor {
+export class CacheInterceptor<T = any> implements HttpInterceptor {
   private cache = new Map<string, { resp: T; cachedAt: number }>();
 
   private storage = inject(BROWSER_STORAGE);
